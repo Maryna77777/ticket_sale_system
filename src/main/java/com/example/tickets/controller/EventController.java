@@ -14,19 +14,25 @@ import java.util.List;
 
 @Validated
 @RestController
-//@RequestMapping("/event")
+@RequestMapping("/event")
 public class EventController {
     @Autowired
     private EventService service;
-    @GetMapping("/allEvent")
+    @GetMapping()
+ //   @GetMapping("/allEvent")
     public List<Event> findAllEvents() {
         return service.getEvent ();
     }
 
-    @GetMapping("/filmByTitle/{title}")
+    @GetMapping("/eventByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
     }
 
+
+    @GetMapping("/eventByCustomer/{lastName}")
+    public List<Event> findEventCustomer (@PathVariable String lastName){
+        return service.getEventLastName(lastName);
+    }
 
 }
