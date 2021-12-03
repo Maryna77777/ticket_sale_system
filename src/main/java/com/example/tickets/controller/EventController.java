@@ -24,6 +24,10 @@ public class EventController {
         return service.getEvent ();
     }
 
+    @GetMapping("/allEvent")
+    public List<Event> findAllSortedEvents() { return service.getSortedEvent();
+    }
+
     @GetMapping("/eventByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
