@@ -26,7 +26,7 @@ public class Sale {
     @Column(name = "COST")
     private int cost;
     @Column(name = "NAME")
-  //  private String name;
+    private String name;
     @JsonIgnore
     @ManyToMany(mappedBy = "sales")
     private List<Event> events;
