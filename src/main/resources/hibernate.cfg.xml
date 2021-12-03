@@ -26,7 +26,7 @@
         <!--<mapping resourse = "entities/Student.hbm.xml"></mapping>-->
         <mapping class ="com.example.tickets.entity.Customer"></mapping>
         <mapping class ="com.example.tickets.entity.Event"></mapping>
-
+        <mapping class ="com.example.tickets.entity.Sale"></mapping>
 
 
     </session-factory>
