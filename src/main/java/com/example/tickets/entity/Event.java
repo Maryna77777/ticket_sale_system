@@ -1,5 +1,6 @@
 package com.example.tickets.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +27,13 @@ public class Event {
     private int price;
     @Column (name = "AVAILABLE")
     private int available;
-    @ManyToMany(mappedBy = "events")
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "event_customer",
+            joinColumns = @JoinColumn(name = "EVENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CUSTOMER_ID")
+    )
     private List<Customer> customers;
 
 }
