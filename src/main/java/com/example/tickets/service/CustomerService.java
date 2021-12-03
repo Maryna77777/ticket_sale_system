@@ -7,6 +7,7 @@ import com.example.tickets.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,4 +17,6 @@ public class CustomerService {
     public List<Customer> getCustomer() {
         return customerRepository.findAll();
     }
+
+
 }
