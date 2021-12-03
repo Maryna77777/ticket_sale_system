@@ -1,5 +1,6 @@
 package com.example.tickets.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,9 +27,7 @@ public class Customer {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column
-    private int number;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "customers")
     private List<Event> events;
 }
