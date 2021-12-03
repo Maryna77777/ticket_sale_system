@@ -12,9 +12,14 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
     public List<Event> getEvent() {
-
         return eventRepository.findAll();
     }
+    public List<Event> getEventLastName(String lastName){
+        return eventRepository.findByLastName (lastName);
+    }
+
+
+
     public Event getByTitle(String title) {
         return eventRepository.findByTitle(title);
     }
