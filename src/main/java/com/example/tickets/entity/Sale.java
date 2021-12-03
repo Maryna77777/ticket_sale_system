@@ -19,6 +19,8 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    // change to event_id
     @Column(name = "TITLE_EVENT")
     private String title;
     @Column(name = "NUM")
