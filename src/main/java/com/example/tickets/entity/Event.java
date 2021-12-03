@@ -7,6 +7,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,7 +25,8 @@ public class Event {
     @Column(name = "TITLE")
     private String title;
     @Column (name = "DATA")
-    private String data;
+    private Date data;
+//    private String data;
     @Column (name = "PRICE")
     private int price;
     @Column (name = "AVAILABLE")
@@ -36,4 +40,5 @@ public class Event {
     )
     private List<Customer> customers;
 
+//Collections.sort(event, Comparator.comparing(Event::getData));
 }
