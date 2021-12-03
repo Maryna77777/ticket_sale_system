@@ -40,5 +40,16 @@ public class Event {
     )
     private List<Customer> customers;
 
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "event_sales",
+            joinColumns = @JoinColumn(name = "EVENT1_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SALE_ID")
+    )
+    private List<Sale> sales;
+
+
+
 //Collections.sort(event, Comparator.comparing(Event::getData));
 }

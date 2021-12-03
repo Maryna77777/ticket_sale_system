@@ -18,5 +18,9 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public List<Customer> getCustomerTitle(String title){
+        return customerRepository.findByTitle (title);
+    }
+
 
 }

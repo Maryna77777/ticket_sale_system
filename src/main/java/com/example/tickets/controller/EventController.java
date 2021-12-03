@@ -33,7 +33,6 @@ public class EventController {
         return service.getByTitle(title);
     }
 
-
     @GetMapping("/eventByCustomer/{lastName}")
     public List<Event> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);

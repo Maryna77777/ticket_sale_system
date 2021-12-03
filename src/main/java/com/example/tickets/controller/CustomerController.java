@@ -25,4 +25,11 @@ public class CustomerController {
     public List<Customer> findAllCustomers() {
         return service.getCustomer ();
     }
+
+    @GetMapping("/customerByTitle/{title}")
+    public List<Customer> findCustomerEvent (@PathVariable String title){
+        return service.getCustomerTitle(title);
+    }
+
+
 }
