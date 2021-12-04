@@ -22,11 +22,12 @@ public class Customer {
     private long id;
     @Column(name = "FIRST_NAME")
     private String firstName;
-
     @Column(name = "LAST_NAME")
     private String lastName;
-
     @JsonIgnore
     @ManyToMany(mappedBy = "customers")
     private List<Event> events;
+    @JsonIgnore
+    @OneToMany(mappedBy="customer")
+    private List<Sale> sales;
 }
