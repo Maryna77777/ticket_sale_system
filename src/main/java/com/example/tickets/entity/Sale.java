@@ -19,17 +19,20 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    // change to event_id
-    @Column(name = "TITLE_EVENT")
-    private String title;
     @Column(name = "NUM")
     private int number;
     @Column(name = "COST")
     private int cost;
-    @Column(name = "NAME")
-    private String name;
+//    @Column(name = "NAME")
+//    private String name;
     @JsonIgnore
-    @ManyToMany(mappedBy = "sales")
-    private List<Event> events;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
 }
