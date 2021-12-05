@@ -1,5 +1,6 @@
 package com.example.tickets.repository;
 
+import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,7 @@ public interface CustomerRepository  extends JpaRepository<Customer,Long> {
 
     @Query("select c from Customer c join c.events e where e.title = :title")
     List<Customer> findByTitle(@Param("title") String title);
+
+//    @Query("select  c.firstName, c.lastName, s.number from Sale s join Customer c join  s.event e where e.title = :title")
+//    List<SaleCustomerDTO> findSaleByTitle(@Param("title") String title);
 }

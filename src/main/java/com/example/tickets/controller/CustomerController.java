@@ -1,6 +1,7 @@
 package com.example.tickets.controller;
 
 
+import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 import com.example.tickets.service.CustomerService;
@@ -29,6 +30,11 @@ public class CustomerController {
     @GetMapping("/customerByTitle/{title}")
     public List<Customer> findCustomerEvent (@PathVariable String title){
         return service.getCustomerTitle(title);
+    }
+
+    @GetMapping("/allCustomersSale")
+    public List<SaleCustomerDTO> findAllCustomersSale() {
+        return service.getAllCustomerSale();
     }
 
 

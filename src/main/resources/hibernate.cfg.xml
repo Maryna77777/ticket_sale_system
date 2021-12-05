@@ -8,8 +8,8 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://127.0.0.1/customerDemo?useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.username">pet1_user</property>
-        <property name="connection.password">123</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">[Petr0vich]</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MariaDBDialect</property>
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
