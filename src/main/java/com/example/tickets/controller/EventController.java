@@ -1,6 +1,10 @@
 package com.example.tickets.controller;
 
 
+import com.example.tickets.dto.EventCustomerSaleDTO;
+import com.example.tickets.dto.EventDTO;
+import com.example.tickets.dto.EventMapperDTO;
+import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Event;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +31,15 @@ public class EventController {
     @GetMapping("/allEvent")
     public List<Event> findAllSortedEvents() { return service.getSortedEvent();
     }
+    @GetMapping("/allEventDTO")
+    public List<EventDTO> getAllEventDTO() { return service.getAllEvent();
+    }
+
+    @GetMapping("/all1")
+    public List<EventMapperDTO> getAllEvent2(){
+        return  service.getAllEvent1();
+    }
+
 
     @GetMapping("/eventByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {
@@ -36,6 +49,11 @@ public class EventController {
     @GetMapping("/eventByCustomer/{lastName}")
     public List<Event> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);
+    }
+
+    @GetMapping("/all3")
+    public List<EventCustomerSaleDTO> findAllEventCustomersSale() {
+        return service.getAllEventCustomerSaleDTO();
     }
 
 }
