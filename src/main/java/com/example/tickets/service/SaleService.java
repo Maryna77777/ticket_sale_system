@@ -28,6 +28,14 @@ public class SaleService {
         return saleRepository.findByEventId(eventId);
     }
 
+//    public Sale createSale (Long customerId, Sale sale){
+//        return saleRepository.findById(customerId).map(customer -> {
+//            sale.setCustomer(customer);
+//            return saleRepository.save(sale);
+//        });
+//    }
+
+
 //    public List<Sale> getSalesByEventIdCustomerId (Long eventId,Long customerId){
 //        return saleRepository.findByEventCustomerId(eventId, customerId);
 //    }
