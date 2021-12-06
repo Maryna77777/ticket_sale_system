@@ -31,12 +31,14 @@ public class EventCustomerSaleDTO {
 
             event.getSales().forEach((sale) -> {
                 Sale sale1 = new Sale();
+                sale1.setId(sale1.getId());
                 sale1.setNumber(sale.getNumber());
                 sale1.setCost(sale.getCost());
                 saleList.add(sale1);
             });
             event.getCustomers().forEach((customer) -> {
                 Customer customer1 = new Customer();
+                customer1.setId(customer1.getId());
                  customer1.setFirstName(customer.getFirstName());
                  customer1.setLastName(customer.getLastName());
                  customerList.add((customer1));
@@ -47,6 +49,9 @@ public class EventCustomerSaleDTO {
         }
         return eventCustomerSaleDTOList;
     }
+
+     
+
 }
 
 

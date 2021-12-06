@@ -1,6 +1,7 @@
 package com.example.tickets.repository;
 
 //import com.example.tickets.dto.EventDTO;
+import com.example.tickets.dto.EventCustomerSaleDTO;
 import com.example.tickets.entity.Event;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,7 @@ public interface EventRepository extends JpaRepository<Event,Long>{
 
     @Query("select e from Event e join e.customers c where c.lastName = :lastName")
     List<Event> findByLastName(@Param("lastName") String lastName);
+
+
+
 }

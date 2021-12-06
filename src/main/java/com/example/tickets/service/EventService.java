@@ -9,6 +9,7 @@ import com.example.tickets.entity.Event;
 //import com.example.tickets.repository.EventDTORepository;
 //import com.example.tickets.mapper.EventMapper;
 import com.example.tickets.mapper.EventMapper;
+
 import com.example.tickets.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -24,8 +25,7 @@ import java.util.List;
 public class EventService {
     @Autowired
     private EventRepository eventRepository;
-    @Autowired
-  //  private EventDTORepository eventDTORepository;
+
 
     public List<Event> getEvent() {
         return eventRepository.findAll();
