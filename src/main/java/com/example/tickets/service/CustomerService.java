@@ -29,10 +29,25 @@ public class CustomerService {
         return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findAll());
     }
 
+    public Customer saveCustomer(Customer customer) {
+        return  customerRepository.save(customer);
+    }
 
-    
+    public List<Customer> saveCustomerList(List<Customer> customers) {
+        return customerRepository.saveAll(customers);
+    }
 
+    public String deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
+        return "Customer removed !! " + id;
+    }
 
+    public Customer updateCustomer (Customer customer) {
+        Customer existingCustomer = customerRepository.findById(customer.getId()).orElse(null);
+        existingCustomer.setFirstName (customer.getFirstName());
+        existingCustomer.setLastName(customer.getLastName());
+        return  customerRepository.save(existingCustomer);
+    }
 
 //    public List<SaleCustomerDTO> getSaleByTitle(String title) {
 //        SaleCustomerDTO saleCustomerDTO = new SaleCustomerDTO();
