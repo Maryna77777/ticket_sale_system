@@ -42,6 +42,28 @@ public class EventService {
         return eventDTO.getEventDTOList(eventRepository.findAll());
     }
 
+    public Event saveEvent(Event event) {
+        return  eventRepository.save(event);
+    }
+
+    public List<Event> saveEventList(List<Event> event) {
+        return eventRepository.saveAll(event);
+    }
+
+    public String deleteEvent(Long id) {
+        eventRepository.deleteById(id);
+        return "event removed !! " + id;
+    }
+
+    public Event updateEvent (Event event ) {
+        Event existingEvent = eventRepository.findById(event.getId()).orElse(null);
+        existingEvent.setTitle (event.getTitle());
+        existingEvent.setData(event.getData());
+        existingEvent.setPrice(event.getPrice());
+        return  eventRepository.save(existingEvent);
+    }
+
+
     public Event getByTitle(String title) {
         return eventRepository.findByTitle(title);
     }

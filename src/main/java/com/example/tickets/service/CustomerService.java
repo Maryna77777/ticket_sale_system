@@ -29,6 +29,11 @@ public class CustomerService {
         return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findAll());
     }
 
+
+    
+
+
+
 //    public List<SaleCustomerDTO> getSaleByTitle(String title) {
 //        SaleCustomerDTO saleCustomerDTO = new SaleCustomerDTO();
 //        return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findSaleByTitle(title));
