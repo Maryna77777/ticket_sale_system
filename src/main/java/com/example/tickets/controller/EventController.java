@@ -5,15 +5,14 @@ import com.example.tickets.dto.EventCustomerSaleDTO;
 import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventMapperDTO;
 import com.example.tickets.dto.SaleCustomerDTO;
+import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Validated
@@ -34,6 +33,26 @@ public class EventController {
     @GetMapping("/allEventDTO")
     public List<EventDTO> getAllEventDTO() { return service.getAllEvent();
     }
+
+    @PostMapping("/addEvent")
+    public Event addEvent (@RequestBody Event event) {
+        return service.saveEvent(event);}
+
+    @PostMapping("/addEvents")
+    public List<Event> addEvents(@RequestBody @Valid List<Event> events) {
+        return service.saveEventList(events);
+    }
+
+    @PutMapping("/updateEvent")
+    public Event updateEvent(@RequestBody Event event) {
+        return service.updateEvent(event);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteEvent(@PathVariable Long id) {
+        return service.deleteEvent(id);
+    }
+
 
     @GetMapping("/all1")
     public List<EventMapperDTO> getAllEvent2(){
