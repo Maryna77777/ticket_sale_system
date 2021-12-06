@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,8 +33,10 @@ public class Sale {
     private Event event;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne (fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customer_id",nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
+
 
 }
