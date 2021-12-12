@@ -28,12 +28,12 @@ public class Sale {
 //    @Column(name = "NAME")
 //    private String name;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne (cascade=CascadeType.ALL )
     @JoinColumn(name = "event_id")
     private Event event;
 
     @JsonIgnore
-    @ManyToOne (fetch = FetchType.LAZY, optional = false)
+    @ManyToOne (fetch = FetchType.LAZY, optional = false,cascade=CascadeType.ALL )
     @JoinColumn(name = "customer_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;

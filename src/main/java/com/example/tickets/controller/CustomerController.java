@@ -51,7 +51,7 @@ public class CustomerController {
         return service.getCustomerTitle(title);
     }
 
-    @GetMapping("/allCustomersSale")
+    @GetMapping("/all")
     public List<SaleCustomerDTO> findAllCustomersSale() {
         return service.getAllCustomerSale();
     }

@@ -43,7 +43,7 @@ public class Event {
     @JsonIgnore
 
 
-    @OneToMany(mappedBy="event")
+    @OneToMany(mappedBy="event",cascade=CascadeType.ALL )
     private List<Sale> sales;
 
 //Collections.sort(event, Comparator.comparing(Event::getData));

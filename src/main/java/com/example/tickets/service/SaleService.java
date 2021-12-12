@@ -1,14 +1,16 @@
 package com.example.tickets.service;
 
 
+import com.example.tickets.entity.Customer;
+import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SaleService {
@@ -28,33 +30,23 @@ public class SaleService {
         return saleRepository.findByEventId(eventId);
     }
 
-//    public Sale createSale (Long customerId, Sale sale){
-//        return saleRepository.findById(customerId).map(customer -> {
-//            sale.setCustomer(customer);
-//            return saleRepository.save(sale);
-//        });
-//    }
+    public Sale createSale(Long customerId, Sale sale) {
+        return saleRepository.findById(customerId).map(customer -> {
+            Customer customer1 = new Customer();
+            sale.setCustomer(customer1);
+            return saleRepository.save(sale);
+        }).orElseThrow(() -> new ResourceNotFoundException("CustomerId " + customerId + " not found"));
+    }
 
-
-//    public List<Sale> getSalesByEventIdCustomerId (Long eventId,Long customerId){
-//        return saleRepository.findByEventCustomerId(eventId, customerId);
-//    }
-
-
-
-//    public Sale createSale (Long customerId, Sale sale){
-//        return saleRepository.findById(customerId).map(customer -> {
-//            sale.setCustomer(customer);
-//            return saleRepository.save(sale);
-//        });
-//    }
-
-//    public Comment createComment(@PathVariable (value = "postId") Long postId,
-//                                 @Valid @RequestBody Comment comment) {
-//        return postRepository.findById(postId).map(post -> {
-//            comment.setPost(post);
-//            return commentRepository.save(comment);
-//        }).orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
-//    }
-
+    public Sale createSale2(Long customerId, Sale sale) {
+        return saleRepository.findById(customerId).map(customer -> {
+            Sale newSale = new Sale();
+            newSale.setNumber(sale.getNumber());
+            newSale.setCost(sale.getCost());
+            newSale.setCustomer(sale.getCustomer());
+            return saleRepository.save(newSale);
+        }).orElseThrow(() -> new ResourceNotFoundException("CustomerId " + customerId + " not found"));
+    }
 }
+
+
