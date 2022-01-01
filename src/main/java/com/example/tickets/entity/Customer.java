@@ -25,7 +25,7 @@ public class Customer {
     @Column(name = "LAST_NAME")
     private String lastName;
     @JsonIgnore
-    @ManyToMany(mappedBy = "customers",cascade=CascadeType.ALL )
+    @ManyToMany(mappedBy = "customers",cascade=CascadeType.MERGE )
     private List<Event> events;
     @JsonIgnore
     @OneToMany(mappedBy="customer",cascade=CascadeType.ALL )

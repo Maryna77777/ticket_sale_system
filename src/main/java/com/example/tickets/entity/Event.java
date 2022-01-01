@@ -32,7 +32,7 @@ public class Event {
     @Column (name = "AVAILABLE")
     private int available;
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(
             name = "event_customer",
             joinColumns = @JoinColumn(name = "EVENT_ID"),
@@ -45,6 +45,10 @@ public class Event {
 
     @OneToMany(mappedBy="event",cascade=CascadeType.ALL )
     private List<Sale> sales;
+
+    public void setCustomer(Customer customer) {
+    }
+
 
 //Collections.sort(event, Comparator.comparing(Event::getData));
 }

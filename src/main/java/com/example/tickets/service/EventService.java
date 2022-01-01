@@ -5,27 +5,27 @@ import com.example.tickets.dto.EventCustomerSaleDTO;
 import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventMapperDTO;
 import com.example.tickets.dto.SaleCustomerDTO;
+import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 //import com.example.tickets.repository.EventDTORepository;
 //import com.example.tickets.mapper.EventMapper;
 import com.example.tickets.mapper.EventMapper;
 
+import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.xml.crypto.Data;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EventService {
     @Autowired
     private EventRepository eventRepository;
-
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public List<Event> getEvent() {
         return eventRepository.findAll();
@@ -76,6 +76,17 @@ public class EventService {
         return eventMapperDTOList;
     }
 
+    public Event createEventByCustomerId(Long customerId, Event event) {
+        Optional<Customer> customer = customerRepository.findById(customerId);
+        if (customer != null) {
+            List<Event> events = customer.get().getEvents();
+            events.add(event);
+            customer.get().setEvents(events);
+            event.setCustomer(customer.get());
+
+        }
+        return eventRepository.save(event);
+    }
 
     public List<EventCustomerSaleDTO> getAllEventCustomerSaleDTO() {
         EventCustomerSaleDTO  eventCustomerSaleDTO = new EventCustomerSaleDTO();

@@ -56,4 +56,5 @@ public class CustomerController {
         return service.getAllCustomerSale();
     }
 
+
 }
