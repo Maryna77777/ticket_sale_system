@@ -3,6 +3,7 @@ package com.example.tickets.service;
 import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
+import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -48,11 +50,4 @@ public class CustomerService {
         existingCustomer.setLastName(customer.getLastName());
         return  customerRepository.save(existingCustomer);
     }
-
-//    public List<SaleCustomerDTO> getSaleByTitle(String title) {
-//        SaleCustomerDTO saleCustomerDTO = new SaleCustomerDTO();
-//        return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findSaleByTitle(title));
-//    }
-
-
 }

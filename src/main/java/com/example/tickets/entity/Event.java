@@ -42,13 +42,10 @@ public class Event {
 
     @JsonIgnore
 
-
     @OneToMany(mappedBy="event",cascade=CascadeType.ALL )
     private List<Sale> sales;
 
     public void setCustomer(Customer customer) {
     }
 
-
-//Collections.sort(event, Comparator.comparing(Event::getData));
 }

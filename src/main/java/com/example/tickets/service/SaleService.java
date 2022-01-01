@@ -5,6 +5,7 @@ import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
+import com.example.tickets.repository.EventRepository;
 import com.example.tickets.repository.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -24,7 +25,7 @@ public class SaleService {
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
-    private CustomerRepository eventRepository;
+    private EventRepository eventRepository;
 
     public List<Sale> getAllSalesByCustomerId(Long customerId) {
         return saleRepository.findByCustomerId(customerId);
@@ -34,32 +35,12 @@ public class SaleService {
         return saleRepository.findByEventId(eventId);
     }
 
-    public Sale createSale(Long customerId, Sale sale) {
-        return saleRepository.findById(customerId).map(customer -> {
-            Customer customer1 = new Customer();
-            sale.setCustomer(customer1);
-            return saleRepository.save(sale);
-        }).orElseThrow(() -> new ResourceNotFoundException("CustomerId " + customerId + " not found"));
-    }
-
-    public Sale createSale2(Long customerId, Sale sale) {
-        return saleRepository.findById(customerId).map(customer -> {
-            Sale newSale = new Sale();
-            newSale.setNumber(sale.getNumber());
-            newSale.setCost(sale.getCost());
-            newSale.setCustomer(sale.getCustomer());
-            return saleRepository.save(newSale);
-        }).orElseThrow(() -> new ResourceNotFoundException("CustomerId " + customerId + " not found"));
-    }
-
-
-    public ResponseEntity<Customer> create(Customer customer) {
-        Customer savedCustomer = customerRepository.save(customer);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedCustomer.getId()).toUri();
-        return ResponseEntity.created(location).body(savedCustomer);
-    }
-
+//    public ResponseEntity<Customer> create(Customer customer) {
+//        Customer savedCustomer = customerRepository.save(customer);
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//                .buildAndExpand(savedCustomer.getId()).toUri();
+//        return ResponseEntity.created(location).body(savedCustomer);
+//    }
 
     public Sale createSaleByCustomerId(Long customerId, Sale sale) {
         Optional<Customer> customer = customerRepository.findById(customerId);
@@ -72,23 +53,14 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
+    public Sale createSaleByCustomerIdAndEventId(Long customerId, Long eventId, Sale sale) {
+    //    Optional<Customer> customer = customerRepository.findById(customerId);
+    //    Optional<Event> event = eventRepository.findById(eventId);
+        sale.setCustomer(customerRepository.findById(customerId).get());
+        sale.setEvent(eventRepository.findById(eventId).get());
+        return saleRepository.save(sale);
+    }
 
-
-//    public void createSaleAndEventByCustomerId(Long customerId, Event event, Sale sale) {
-//        Optional<Customer> customer = customerRepository.findById(customerId);
-//        if (customer != null) {
-//            List<Event> events = customer.get().getEvents();
-//            events.add(event);
-//            customer.get().setEvents(events);
-//            event.setCustomer(customer.get());
-//
-//            List<Sale> sales = customer.get().getSales();
-//            sales.add(sale);
-//            customer.get().setSales(sales);
-//            sale.setCustomer(customer.get());
-//        }
-//        saleRepository.saveAll(event, sale);
-//    }
 }
 
 

@@ -83,7 +83,6 @@ public class EventService {
             events.add(event);
             customer.get().setEvents(events);
             event.setCustomer(customer.get());
-
         }
         return eventRepository.save(event);
     }

@@ -32,40 +32,19 @@ public class SaleController {
         return service.getAllSalesByEventId(eventId);
     }
 
-    @PostMapping("/customer/{customerId}/createsales")
-    public Sale createSales (@PathVariable (value = "customerId") Long customerId,
-                                       @Valid @RequestBody Sale sale) {
-        return service.createSale(customerId, sale);
-    }
 
-    @PostMapping("/customer/{customerId}/create")
-    public Sale createSales1 ( @PathVariable (value ="customerId") Long customerId,
-                              @Valid @RequestBody Sale sale) {
-        return service. createSale2(customerId, sale);
-    }
 
     @PostMapping("/{customerId}/sales")
-    public Sale createSales7 (@PathVariable (value = "customerId") Long customerId,
+    public Sale createSales (@PathVariable (value = "customerId") Long customerId,
                              @Valid @RequestBody Sale sale) {
         return service.createSaleByCustomerId(customerId, sale);
     }
 
-//    @PostMapping("/{customerId}/event/sales")
-//    public void createSales7 (@PathVariable (value = "customerId") Long customerId,
-//                              @Valid @RequestBody Event event,
-//                              @Valid @RequestBody Sale sale) {
-//        service.createSaleAndEventByCustomerId(customerId, event, sale);
-//    }
+    @PostMapping("/{customerId}/{eventId}/sales")
+    public Sale createSales2 (@PathVariable (value = "customerId") Long customerId,
+                              @PathVariable (value = "eventId") Long eventId,
+                              @Valid @RequestBody Sale sale) {
+        return service.createSaleByCustomerIdAndEventId (customerId, eventId, sale);
+    }
 
-//    @PostMapping("/customer/create")
-//    public ResponseEntity<Customer> create1 (@Valid @RequestBody Customer customer) {
-//        return service.create(customer);
-//    }
-
-
-//    @GetMapping("/event/{eventId}/{customerId}/sales")
-//    public List<Sale> getSaleByEventCustomer (@PathVariable(value = "eventId") Long eventId,@PathVariable(value = "customerId") Long customerId){
-//        return service.getSalesByEventIdCustomerId(eventId, customerId);
-//    }
-//
 }

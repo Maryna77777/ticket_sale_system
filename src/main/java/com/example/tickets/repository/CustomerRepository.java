@@ -9,11 +9,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository  extends JpaRepository<Customer,Long> {
 
     @Query("select c from Customer c join c.events e where e.title = :title")
     List<Customer> findByTitle(@Param("title") String title);
+
+
 
 }
