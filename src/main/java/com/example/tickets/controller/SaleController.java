@@ -4,11 +4,13 @@ package com.example.tickets.controller;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
+import com.example.tickets.security.model.User;
 import com.example.tickets.service.EventService;
 import com.example.tickets.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,19 @@ public class SaleController {
     public List<Sale> getSaleByEvent (@PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
+
+
+//UserDetails ud = ((Authentication)principal).getPrincipal()
+//@Secured({"ROLE_USER"})
+//@PostMapping("/{customerId}/{eventId}")
+//public Sale createSales3 (@AuthenticationPrincipal User user,
+//                          @PathVariable (value =  "customerId") Long customerId,
+//                          @PathVariable (value = "eventId") Long eventId,
+//                          @Valid @RequestBody Sale sale) {
+//    return service.createSaleByCustomerIdAndEventId (customerId, eventId, sale);
+//}
+
+
 
     @Secured({"ROLE_USER"})
     @PostMapping("/{customerId}/{eventId}")
