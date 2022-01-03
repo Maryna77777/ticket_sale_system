@@ -8,6 +8,7 @@ import com.example.tickets.service.CustomerService;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,8 @@ import java.util.List;
 
 @Validated
 @RestController
+
+@Secured("ROLE_ADMIN")
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
