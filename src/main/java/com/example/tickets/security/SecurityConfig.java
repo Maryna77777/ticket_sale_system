@@ -37,11 +37,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Override public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/static/css/**, /static/js/**, *.ico");
-        // swagger
-        web.ignoring().antMatchers( "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**","/swagger/**");
-    }
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+            // other public endpoints of your API may be appended to this array
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -54,18 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()  // whitelist Swagger UI resources
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider))
         ;
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER")
-//                .and()
-//                .withUser("admin").password("password").roles("ADMIN");
-//    }
 
 }
