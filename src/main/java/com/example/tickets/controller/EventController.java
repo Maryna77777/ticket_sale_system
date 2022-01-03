@@ -64,6 +64,10 @@ public class EventController {
         return service.deleteEvent(id);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public Event deleteEvent1(@PathVariable Long id) {
+        return service.deleteEvent1(id);
+    }
     @PermitAll
     @GetMapping("/ByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {

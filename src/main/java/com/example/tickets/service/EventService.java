@@ -55,6 +55,10 @@ public class EventService {
         return "event removed !! " + id;
     }
 
+    public Event deleteEvent1(Long id) {
+         return eventRepository.removeById(id);
+     }
+
     public Event updateEvent (Event event ) {
         Event existingEvent = eventRepository.findById(event.getId()).orElse(null);
         existingEvent.setTitle (event.getTitle());
