@@ -23,27 +23,20 @@ public class SaleController {
     @Autowired
     private SaleService service;
 
-    @Secured({"ROLE_ADMIN"})
-    @GetMapping("/customer/{customerId}/sales")
+    @Secured({"ROLE_MANAGER"})
+    @GetMapping("/customer/{customerId}")
     public List<Sale> getSaleByCustomer (@PathVariable(value = "customerId") Long customerId){
         return service.getAllSalesByCustomerId(customerId);
     }
 
     @Secured({"ROLE_USER"})
-    @GetMapping("/event/{eventId}/sales")
+    @GetMapping("/event/{eventId}")
     public List<Sale> getSaleByEvent (@PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
 
-
-//    @PostMapping("/{customerId}/sales")
-//    public Sale createSales (@PathVariable (value = "customerId") Long customerId,
-//                             @Valid @RequestBody Sale sale) {
-//        return service.createSaleByCustomerId(customerId, sale);
-//    }
-
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping("/{customerId}/{eventId}/sales")
+    @Secured({"ROLE_USER"})
+    @PostMapping("/{customerId}/{eventId}")
     public Sale createSales2 (@PathVariable (value = "customerId") Long customerId,
                               @PathVariable (value = "eventId") Long eventId,
                               @Valid @RequestBody Sale sale) {

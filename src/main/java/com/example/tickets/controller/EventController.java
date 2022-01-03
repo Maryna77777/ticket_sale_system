@@ -28,13 +28,12 @@ public class EventController {
 
     @PermitAll
     @GetMapping()
- //   @GetMapping("/allEvent")
     public List<Event> findAllEvents() {
         return service.getEvent ();
     }
 
     @PermitAll
-    @GetMapping("/allEvent")
+    @GetMapping("/sorted")
     public List<Event> findAllSortedEvents() { return service.getSortedEvent();
     }
 
@@ -42,59 +41,46 @@ public class EventController {
 //    public List<EventDTO> getAllEventDTO() { return service.getAllEvent();
 //    }
 
-    @Secured({"ROLE_ADMIN"})
-    @PostMapping("/addEvent")
+    @Secured({"ROLE_MANAGER"})
+    @PostMapping()
     public Event addEvent (@RequestBody Event event) {
         return service.saveEvent(event);}
 
-    @Secured({"ROLE_ADMIN"})
-    @PostMapping("/addEvents")
+    @Secured({"ROLE_MANAGER"})
+    @PostMapping("/list")
     public List<Event> addEvents(@RequestBody @Valid List<Event> events) {
         return service.saveEventList(events);
     }
 
-    @Secured({"ROLE_ADMIN"})
-    @PutMapping("/updateEvent")
+    @Secured({"ROLE_MANAGER"})
+    @PutMapping()
     public Event updateEvent(@RequestBody Event event) {
         return service.updateEvent(event);
     }
 
-
     @Secured({"ROLE_ADMIN"})
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteEvent(@PathVariable Long id) {
         return service.deleteEvent(id);
     }
 
-//
-//    @GetMapping("/all1")
-//    public List<EventMapperDTO> getAllEvent2(){
-//        return  service.getAllEvent1();
-//    }
-
     @PermitAll
-    @GetMapping("/eventByTitle/{title}")
+    @GetMapping("/ByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
     }
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_MANAGER"})
     @GetMapping("/eventByCustomer/{lastName}")
     public List<Event> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);
     }
 
-    @Secured({"ROLE_ADMIN"})
-    @GetMapping("/all3")
+    @Secured({"ROLE_MANAGER"})
+    @GetMapping("/all")
     public List<EventCustomerSaleDTO> findAllEventCustomersSale() {
         return service.getAllEventCustomerSaleDTO();
     }
 
-//
-//    @PostMapping("/{customerId}/events")
-//    public Event createEventById (@PathVariable (value = "customerId") Long customerId,
-//                              @Valid @RequestBody Event event) {
-//        return service.createEventByCustomerId(customerId, event);
-//    }
 
 }

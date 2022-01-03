@@ -66,10 +66,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(AUTH_WHITELIST).permitAll()  // whitelist Swagger UI resources
 //                .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
 //                .hasRole("SWAGGER")
+//                .anyRequest().permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider))
-        ;
+                .apply(new JwtConfigurer(jwtTokenProvider));
     }
 
 }

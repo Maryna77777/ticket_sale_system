@@ -19,45 +19,50 @@ import java.util.List;
 @Validated
 @RestController
 
-@Secured("ROLE_ADMIN")
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
     private CustomerService service;
 
-    @GetMapping("/allCustomers")
+    @Secured("ROLE_MANAGER")
+    @GetMapping()
     public List<Customer> findAllCustomers() {
         return service.getCustomer ();
     }
 
-    @PostMapping("/addCustomer")
+    @Secured("ROLE_ADMIN")
+    @PostMapping()
     public Customer addCustomer (@RequestBody Customer customer) {
         return service.saveCustomer(customer);}
 
-    @PostMapping("/addCustomers")
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/list")
     public List<Customer> addCustomers(@RequestBody @Valid List<Customer> customers) {
         return service.saveCustomerList(customers);
     }
 
-    @PutMapping("/updateCustomer")
+    @Secured("ROLE_ADMIN")
+    @PutMapping()
     public Customer updateCustomer(@RequestBody Customer customer) {
         return service.updateCustomer(customer);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @Secured("ROLE_ADMIN")
+    @DeleteMapping("/{id}")
     public String deleteCustomer(@PathVariable Long id) {
         return service.deleteCustomer(id);
     }
 
-    @GetMapping("/customerByTitle/{title}")
+    @Secured("ROLE_MANAGER")
+    @GetMapping("/ByEvent/{title}")
     public List<Customer> findCustomerEvent (@PathVariable String title){
         return service.getCustomerTitle(title);
     }
 
-    @GetMapping("/all")
+    @Secured("ROLE_MANAGER")
+    @GetMapping("/allSales")
     public List<SaleCustomerDTO> findAllCustomersSale() {
         return service.getAllCustomerSale();
     }
-
 
 }
