@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class JwtUserFactory {
-    //GrantedAuthority отражает разрешения (роли) выданные пользователю в масштабе всего приложения
+
     public JwtUserFactory() {
     }
 
@@ -28,7 +28,7 @@ public final class JwtUserFactory {
                 user.getUpdated()
         );
     }
-    //метод конвертирующий роли в GrantedAuthorities (полномочия для роли)
+
     private static List<GrantedAuthority> mapToGrantedAuthorities(List<Role> userRoles) {
         return userRoles.stream()
                 .map(role ->

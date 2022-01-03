@@ -19,9 +19,6 @@ public interface SaleRepository extends JpaRepository <Sale,Long>{
 
     List<Sale> findByEventId(Long eventId);
 
- //   void saveAll(Event event, Sale sale);
-
-//    List<Sale> findByEventCustomerId(Long eventId,Long customerId);
 }
 
 

@@ -20,18 +20,14 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-//класс, который генерирует токены
 @Component
 public class JwtTokenProvider {
 
-    //секретное слово для генерации токена
     @Value("${jwt.token.secret}")
     private String secret;
 
-    //время действия токена
     @Value("${jwt.token.expired}")
     private long validityInMilliseconds;
-
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -47,7 +43,6 @@ public class JwtTokenProvider {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-    //Создание токена
     public String createToken(String username, List<Role> roles) {
 
         Claims claims = Jwts.claims().setSubject(username);
@@ -64,13 +59,11 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    //возвращает аутентификацию на основании токена
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-   // возвращает имя пользователя по токену
     public String getUsername(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
@@ -83,8 +76,6 @@ public class JwtTokenProvider {
         return null;
     }
 
-
-    //
     public boolean validateToken(String token) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
@@ -99,8 +90,6 @@ public class JwtTokenProvider {
         }
     }
 
-
-    //на основании списка ролей пользователя возвращает список стрингов
     private List<String> getRoleNames(List<Role> userRoles) {
         List<String> result = new ArrayList<>();
 
