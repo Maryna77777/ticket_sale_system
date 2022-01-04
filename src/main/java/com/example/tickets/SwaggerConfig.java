@@ -32,16 +32,17 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo(){
         return new ApiInfo(
-                "Spring Boot Blog REST APIs",
-                "Spring Boot Blog REST API Documentation",
+                "Spring Boot REST APIs",
+                "Spring Boot REST API Documentation",
                 "1",
                 "Terms of service",
-                new Contact("Ramesh Fadatare", "www.javaguides.net", "ramesh@gmail.com"),
+                new Contact(" ", "", " "),
                 "License of API",
                 "API license URL",
                 Collections.emptyList()
         );
     }
+
 
     @Bean
     public Docket api(){
