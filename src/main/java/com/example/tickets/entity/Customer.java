@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 
@@ -20,8 +21,12 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotEmpty(message = "FIRST NAME should not be empty")
     @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @NotEmpty(message = "LAST NAME should not be empty")
     @Column(name = "LAST_NAME")
     private String lastName;
     @JsonIgnore
