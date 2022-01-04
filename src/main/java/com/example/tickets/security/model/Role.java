@@ -10,10 +10,11 @@ import java.util.List;
 @Table(name = "roles")
 @Data
 public class Role extends BaseEntity{
+
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private List<User> users;
 
     @Override

@@ -47,7 +47,13 @@ public class CustomerController {
         return service.updateCustomer(customer);
     }
 
-    @Secured("ROLE_ADMIN")
+    @DeleteMapping("/delete/{id}")
+    public Customer deleteCustomer1(@PathVariable Long id) {
+        return service.deleteCustomer1(id);
+    }
+
+
+  //  @Secured("ROLE_ADMIN")
     @DeleteMapping("/{id}")
     public String deleteCustomer(@PathVariable Long id) {
         return service.deleteCustomer(id);
