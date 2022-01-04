@@ -19,31 +19,6 @@ public class TicketsApplication {
 	}
 
 
-//
-//	@EventListener
-//	public void seed(ContextRefreshedEvent contextRefreshedEvent) {
-//		seedUsersTable();
-//
-//	}
-
-//	private void seedUsersTable() {
-//
-//		if(u == null || u.size() <= 0) {
-//			User user = new User();
-//			user.setName("Spring Blog");
-//			user.setUsername("admin");
-//			user.setEmail("test@test.com");
-//			user.setPassword(new BCryptPasswordEncoder().encode("test123"));
-//			user.setRole(Roles.SUPER_ADMIN.toString());
-//
-//			userRepository.save(user);
-//			logger.info("Users Seeded");
-//		} else {
-//			logger.info("Users Seeding Not Required");
-//		}
-//	}
-
-
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -56,6 +31,5 @@ public class TicketsApplication {
 			}
 		};
 	}
-	
 
 }

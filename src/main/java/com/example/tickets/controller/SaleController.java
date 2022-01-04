@@ -37,19 +37,6 @@ public class SaleController {
         return service.getAllSalesByEventId(eventId);
     }
 
-
-//UserDetails ud = ((Authentication)principal).getPrincipal()
-//@Secured({"ROLE_USER"})
-//@PostMapping("/{customerId}/{eventId}")
-//public Sale createSales3 (@AuthenticationPrincipal User user,
-//                          @PathVariable (value =  "customerId") Long customerId,
-//                          @PathVariable (value = "eventId") Long eventId,
-//                          @Valid @RequestBody Sale sale) {
-//    return service.createSaleByCustomerIdAndEventId (customerId, eventId, sale);
-//}
-
-
-
     @Secured({"ROLE_USER"})
     @PostMapping("/{customerId}/{eventId}")
     public Sale createSales2 (@PathVariable (value = "customerId") Long customerId,

@@ -35,13 +35,6 @@ public class SaleService {
         return saleRepository.findByEventId(eventId);
     }
 
-//    public ResponseEntity<Customer> create(Customer customer) {
-//        Customer savedCustomer = customerRepository.save(customer);
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(savedCustomer.getId()).toUri();
-//        return ResponseEntity.created(location).body(savedCustomer);
-//    }
-
     public Sale createSaleByCustomerId(Long customerId, Sale sale) {
         Optional<Customer> customer = customerRepository.findById(customerId);
         if (customer != null) {

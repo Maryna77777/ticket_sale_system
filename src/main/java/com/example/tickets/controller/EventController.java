@@ -37,10 +37,6 @@ public class EventController {
     public List<Event> findAllSortedEvents() { return service.getSortedEvent();
     }
 
-//    @GetMapping("/allEventDTO")
-//    public List<EventDTO> getAllEventDTO() { return service.getAllEvent();
-//    }
-
     @Secured({"ROLE_MANAGER"})
     @PostMapping()
     public Event addEvent (@RequestBody Event event) {
@@ -58,7 +54,7 @@ public class EventController {
         return service.updateEvent(event);
     }
 
- //   @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{id}")
     public String deleteEvent(@PathVariable Long id) {
         return service.deleteEvent(id);
