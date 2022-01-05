@@ -73,11 +73,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .apply(new JwtConfigurer(jwtTokenProvider));
 
     }
-
-    @Bean
-    EvaluationContextExtension securityExtension() {
-       // return new SecurityEvaluationContextExtension();
-        return (EvaluationContextExtension) new SecurityEvaluationContextExtension();
-    }
+//
+//    @Bean
+//    EvaluationContextExtension securityExtension() {
+//       // return new SecurityEvaluationContextExtension();
+//        return (EvaluationContextExtension) new SecurityEvaluationContextExtension();
+//    }
 
 }

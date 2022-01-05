@@ -1,5 +1,6 @@
 package com.example.tickets.entity;
 
+import com.example.tickets.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,13 @@ public class Customer {
     @JsonIgnore
     @ManyToMany(mappedBy = "customers",cascade=CascadeType.MERGE )
     private List<Event> events;
+
     @JsonIgnore
     @OneToMany(mappedBy="customer",cascade=CascadeType.ALL )
     private List<Sale> sales;
+
+//    @JsonIgnore
+//    @OneToOne (fetch = FetchType.LAZY)
+//    private User user;
+
 }

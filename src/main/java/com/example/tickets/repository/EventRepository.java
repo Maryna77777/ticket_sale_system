@@ -25,4 +25,6 @@ public interface EventRepository extends JpaRepository<Event,Long>{
     @Query("delete from Event e where e.id = :id")
     Event removeById (Long id);
 
+
+
 }
