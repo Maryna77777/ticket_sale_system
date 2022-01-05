@@ -8,7 +8,7 @@ import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
 import com.example.tickets.repository.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+//import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
