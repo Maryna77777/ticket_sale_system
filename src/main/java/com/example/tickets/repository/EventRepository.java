@@ -22,6 +22,7 @@ public interface EventRepository extends JpaRepository<Event,Long>{
     @Query("select e from Event e join e.customers c where c.lastName = :lastName")
     List<Event> findByLastName(@Param("lastName") String lastName);
 
-
+    @Query("delete from Event e where e.id = :id")
+    Event removeById (Long id);
 
 }

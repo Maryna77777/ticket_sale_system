@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -23,10 +24,12 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "TITLE")
+    @NotEmpty(message = "Title should not be empty")
     private String title;
+    @NotEmpty(message = "DATA should not be empty")
     @Column (name = "DATA")
     private Date data;
-//    private String data;
+    @NotEmpty(message = "PRICE should not be empty")
     @Column (name = "PRICE")
     private int price;
     @Column (name = "AVAILABLE")

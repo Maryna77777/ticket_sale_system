@@ -10,9 +10,11 @@ import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,64 +25,64 @@ import java.util.List;
 public class EventController {
     @Autowired
     private EventService service;
+
+    @PermitAll
     @GetMapping()
- //   @GetMapping("/allEvent")
     public List<Event> findAllEvents() {
         return service.getEvent ();
     }
 
-    @GetMapping("/allEvent")
+    @PermitAll
+    @GetMapping("/sorted")
     public List<Event> findAllSortedEvents() { return service.getSortedEvent();
     }
-    @GetMapping("/allEventDTO")
-    public List<EventDTO> getAllEventDTO() { return service.getAllEvent();
-    }
 
-    @PostMapping("/addEvent")
+    @Secured({"ROLE_MANAGER"})
+    @PostMapping()
     public Event addEvent (@RequestBody Event event) {
         return service.saveEvent(event);}
 
-    @PostMapping("/addEvents")
+    @Secured({"ROLE_MANAGER"})
+    @PostMapping("/list")
     public List<Event> addEvents(@RequestBody @Valid List<Event> events) {
         return service.saveEventList(events);
     }
 
-    @PutMapping("/updateEvent")
+    @Secured({"ROLE_MANAGER"})
+    @PutMapping()
     public Event updateEvent(@RequestBody Event event) {
         return service.updateEvent(event);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @Secured({"ROLE_ADMIN"})
+    @DeleteMapping("/{id}")
     public String deleteEvent(@PathVariable Long id) {
         return service.deleteEvent(id);
     }
 
-
-    @GetMapping("/all1")
-    public List<EventMapperDTO> getAllEvent2(){
-        return  service.getAllEvent1();
+    @PermitAll
+    @DeleteMapping("/delete/{id}")
+    public Event deleteEvent1(@PathVariable Long id) {
+        return service.deleteEvent1(id);
     }
 
-
-    @GetMapping("/eventByTitle/{title}")
+    @PermitAll
+    @GetMapping("/ByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
     }
 
+    @Secured({"ROLE_MANAGER"})
     @GetMapping("/eventByCustomer/{lastName}")
     public List<Event> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);
     }
 
-    @GetMapping("/all3")
+    @Secured({"ROLE_MANAGER"})
+    @GetMapping("/all")
     public List<EventCustomerSaleDTO> findAllEventCustomersSale() {
         return service.getAllEventCustomerSaleDTO();
     }
 
-    @PostMapping("/{customerId}/events")
-    public Event createEventById (@PathVariable (value = "customerId") Long customerId,
-                              @Valid @RequestBody Event event) {
-        return service.createEventByCustomerId(customerId, event);
-    }
 
 }
