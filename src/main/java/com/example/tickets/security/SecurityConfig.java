@@ -74,10 +74,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean
-    EvaluationContextExtension securityExtension() {
-       // return new SecurityEvaluationContextExtension();
-        return (EvaluationContextExtension) new SecurityEvaluationContextExtension();
-    }
 
 }
