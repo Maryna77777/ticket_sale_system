@@ -18,7 +18,6 @@ import java.util.List;
 
 @Validated
 @RestController
-
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
@@ -32,7 +31,7 @@ public class CustomerController {
 
     @Secured("ROLE_ADMIN")
     @PostMapping()
-    public Customer addCustomer (@RequestBody Customer customer) {
+    public Customer addCustomer (@Valid @RequestBody Customer customer) {
         return service.saveCustomer(customer);}
 
     @Secured("ROLE_ADMIN")
@@ -43,15 +42,9 @@ public class CustomerController {
 
     @Secured("ROLE_ADMIN")
     @PutMapping()
-    public Customer updateCustomer(@RequestBody Customer customer) {
+    public Customer updateCustomer(@RequestBody @Valid  Customer customer) {
         return service.updateCustomer(customer);
     }
-
-    @DeleteMapping("/delete/{id}")
-    public Customer deleteCustomer1(@PathVariable Long id) {
-        return service.deleteCustomer1(id);
-    }
-
 
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/{id}")
@@ -61,7 +54,7 @@ public class CustomerController {
 
     @Secured("ROLE_MANAGER")
     @GetMapping("/ByEvent/{title}")
-    public List<Customer> findCustomerEvent (@PathVariable String title){
+    public List<Customer> findCustomerEvent (@PathVariable  String title){
         return service.getCustomerTitle(title);
     }
 

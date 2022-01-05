@@ -18,9 +18,9 @@ import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 import java.util.List;
 
-@Validated
-@RestController
 
+@RestController
+@Validated
 @RequestMapping("/event")
 public class EventController {
     @Autowired
@@ -39,7 +39,7 @@ public class EventController {
 
     @Secured({"ROLE_MANAGER"})
     @PostMapping()
-    public Event addEvent (@RequestBody Event event) {
+    public Event addEvent (@Valid @RequestBody Event event) {
         return service.saveEvent(event);}
 
     @Secured({"ROLE_MANAGER"})
@@ -50,7 +50,7 @@ public class EventController {
 
     @Secured({"ROLE_MANAGER"})
     @PutMapping()
-    public Event updateEvent(@RequestBody Event event) {
+    public Event updateEvent(@Valid @RequestBody Event event) {
         return service.updateEvent(event);
     }
 

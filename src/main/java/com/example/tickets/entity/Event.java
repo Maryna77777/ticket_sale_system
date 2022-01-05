@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -23,17 +23,24 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "TITLE")
     @NotEmpty(message = "Title should not be empty")
+    @Size(min=2, max=70, message = "Title should be between 2 and 70 character")
     private String title;
-    @NotEmpty(message = "DATA should not be empty")
+
+    @Future(message = "Data shoud be in future")
     @Column (name = "DATA")
     private Date data;
-    @NotEmpty(message = "PRICE should not be empty")
+
+    @Min(value = 0, message = "Price should be more than 0")
     @Column (name = "PRICE")
     private int price;
+
+    @Positive(message = "Avaible tikets shoud be positive number")
     @Column (name = "AVAILABLE")
     private int available;
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(

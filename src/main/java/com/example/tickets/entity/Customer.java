@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 
@@ -20,10 +22,17 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotEmpty(message = "First Name should not be empty")
+    @Size(min=2, max=30, message = "First Name should be between 2 and 30 character")
     @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @NotEmpty(message = "Last Name should not be empty")
+    @Size(min=2, max=30, message = "Last Name should be between 2 and 30 character")
     @Column(name = "LAST_NAME")
     private String lastName;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "customers",cascade=CascadeType.MERGE )
     private List<Event> events;
