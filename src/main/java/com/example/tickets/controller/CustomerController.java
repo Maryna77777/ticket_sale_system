@@ -28,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping("/addCustomer")
-    public Customer addCustomer (@RequestBody Customer customer) {
+    public Customer addCustomer (@RequestBody  @Valid Customer customer) {
         return service.saveCustomer(customer);}
 
     @PostMapping("/addCustomers")
@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     @PutMapping("/updateCustomer")
-    public Customer updateCustomer(@RequestBody Customer customer) {
+    public Customer updateCustomer(@RequestBody @Valid Customer customer) {
         return service.updateCustomer(customer);
     }
 
@@ -55,6 +55,4 @@ public class CustomerController {
     public List<SaleCustomerDTO> findAllCustomersSale() {
         return service.getAllCustomerSale();
     }
-
-
 }

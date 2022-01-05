@@ -29,6 +29,7 @@ public class Customer {
     @NotEmpty(message = "LAST NAME should not be empty")
     @Column(name = "LAST_NAME")
     private String lastName;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "customers",cascade=CascadeType.MERGE )
     private List<Event> events;

@@ -9,6 +9,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Entity
@@ -21,12 +23,15 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Min(value = 1, message ="Number should be greater 1")
     @Column(name = "NUM")
     private int number;
+
+    @Min(value = 0, message ="COST should be greater 0")
     @Column(name = "COST")
     private int cost;
-//    @Column(name = "NAME")
-//    private String name;
+
     @JsonIgnore
     @ManyToOne (cascade=CascadeType.ALL )
     @JoinColumn(name = "event_id")

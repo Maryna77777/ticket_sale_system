@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -21,6 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Table(name="event")
+@Component
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +35,7 @@ public class Event {
     private String title;
 
     @NotEmpty(message = "DATA should not be empty")
+    @Future(message = "Date must be in the future")
     @Column (name = "DATA")
     private Date data;
 
