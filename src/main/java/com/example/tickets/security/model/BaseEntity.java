@@ -28,8 +28,5 @@ public class BaseEntity {
     @Column(name = "status")
     private Status status;
 
-
-
-
 }
 

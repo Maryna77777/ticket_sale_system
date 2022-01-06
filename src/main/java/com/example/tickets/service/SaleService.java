@@ -46,15 +46,20 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
-
-
-    public Sale createSaleByUserIdAndEventId(Long userId, Long eventId, Sale sale) {
-        //    Optional<Customer> customer = customerRepository.findById(customerId);
-        //    Optional<Event> event = eventRepository.findById(eventId);
-        sale.setCustomer(customerRepository.findById(userId).get());
+    public Sale createSaleByUserIdAndEventId(Long eventId, Sale sale) {
         sale.setEvent(eventRepository.findById(eventId).get());
         return saleRepository.save(sale);
     }
+
+
+//
+//    public Sale createSaleByUserIdAndEventId(Long userId, Long eventId, Sale sale) {
+//        //    Optional<Customer> customer = customerRepository.findById(customerId);
+//        //    Optional<Event> event = eventRepository.findById(eventId);
+//        sale.setCustomer(customerRepository.findById(userId).get());
+//        sale.setEvent(eventRepository.findById(eventId).get());
+//        return saleRepository.save(sale);
+//    }
 
 
     public Sale createSaleByCustomerIdAndEventId(Long customerId, Long eventId, Sale sale) {

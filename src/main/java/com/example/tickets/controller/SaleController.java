@@ -45,16 +45,16 @@ public class SaleController {
         return service.createSaleByCustomerIdAndEventId (customerId, eventId, sale);
     }
 
-    @Secured({"ROLE_USER"})
-    @PostMapping("/user/{userId}/{eventId}")
-    public Sale createSalesUser (@PathVariable (value = "userId") Long userId,
+ //   @Secured({"ROLE_USER"})
+    @PostMapping("/user/{eventId}")
+    public Sale createSalesUser (@AuthenticationPrincipal User user,
                                  @PathVariable (value = "eventId") Long eventId,
                                  @Valid @RequestBody Sale sale) {
 //        final User user= (User) SecurityContextHolder
 //                .getContext()
 //                .getAuthentication()
 //                .getPrincipal();
-        return service.createSaleByUserIdAndEventId (userId, eventId, sale);
+        return service.createSaleByUserIdAndEventId (eventId, sale);
     }
 
 }
