@@ -18,7 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 @EnableWebSecurity
-@EnableJpaRepositories
+
 @EnableGlobalMethodSecurity(
         securedEnabled = true,
         jsr250Enabled = true,
