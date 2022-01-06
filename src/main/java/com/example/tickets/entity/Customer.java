@@ -42,8 +42,5 @@ public class Customer {
     @OneToMany(mappedBy="customer",cascade=CascadeType.ALL )
     private List<Sale> sales;
 
-//    @JsonIgnore
-//    @OneToOne (fetch = FetchType.LAZY)
-//    private User user;
 
 }

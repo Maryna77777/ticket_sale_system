@@ -36,12 +36,20 @@ public class SaleController {
     public List<Sale> getSaleByEvent (@PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
-    @Secured({"ROLE_USER"})
-    @PostMapping("/{customerId}/{eventId}")
+//    @Secured({"ROLE_USER"})
+    @PostMapping("/customer/{customerId}/{eventId}")
     public Sale createSales2 (@PathVariable (value = "customerId") Long customerId,
                               @PathVariable (value = "eventId") Long eventId,
                               @Valid @RequestBody Sale sale) {
         return service.createSaleByCustomerIdAndEventId (customerId, eventId, sale);
+    }
+
+ //   @Secured({"ROLE_USER"})
+    @PostMapping("/user/{userId}/{eventId}")
+    public Sale createSalesUser (@PathVariable (value = "userId") Long userId,
+                                 @PathVariable (value = "eventId") Long eventId,
+                                 @Valid @RequestBody Sale sale) {
+        return service.createSaleByUserIdAndEventId (userId, eventId, sale);
     }
 
 }

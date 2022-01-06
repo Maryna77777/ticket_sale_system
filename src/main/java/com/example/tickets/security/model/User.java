@@ -33,9 +33,7 @@ public class User extends BaseEntity{
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
-//
-//      @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-//    private Customer customer;
+
 
 }
 
