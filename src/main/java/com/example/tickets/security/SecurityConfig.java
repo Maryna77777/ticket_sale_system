@@ -18,7 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 @EnableWebSecurity
-@EnableJpaRepositories
+
 @EnableGlobalMethodSecurity(
         securedEnabled = true,
         jsr250Enabled = true,
@@ -74,10 +74,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean
-    EvaluationContextExtension securityExtension() {
-       // return new SecurityEvaluationContextExtension();
-        return (EvaluationContextExtension) new SecurityEvaluationContextExtension();
-    }
 
 }

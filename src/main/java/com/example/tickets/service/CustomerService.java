@@ -44,9 +44,6 @@ public class CustomerService {
         return "Customer removed !! " + id;
     }
 
-    public Customer deleteCustomer1(Long id){
-        return customerRepository.removeById(id);
-    }
 
     public Customer updateCustomer (Customer customer) {
         Customer existingCustomer = customerRepository.findById(customer.getId()).orElse(null);
