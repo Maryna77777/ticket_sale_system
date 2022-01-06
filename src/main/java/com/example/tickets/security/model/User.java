@@ -1,6 +1,7 @@
 package com.example.tickets.security.model;
 
 import com.example.tickets.entity.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,8 @@ public class User extends BaseEntity{
     @Column(name = "password")
     private String password;
 
+
+    @JsonIgnore
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

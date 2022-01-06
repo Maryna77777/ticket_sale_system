@@ -1,5 +1,6 @@
 package com.example.tickets.security.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Role extends BaseEntity{
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private List<User> users;
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +50,10 @@ public class SaleController {
     public Sale createSalesUser (@PathVariable (value = "userId") Long userId,
                                  @PathVariable (value = "eventId") Long eventId,
                                  @Valid @RequestBody Sale sale) {
+//        final User user= (User) SecurityContextHolder
+//                .getContext()
+//                .getAuthentication()
+//                .getPrincipal();
         return service.createSaleByUserIdAndEventId (userId, eventId, sale);
     }
 
