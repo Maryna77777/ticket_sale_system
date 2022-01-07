@@ -36,13 +36,10 @@ public class UserController {
         return user;
     }
 
-
- //   @Secured({"ROLE_USER"})
+    @Secured({"ROLE_USER"})
     @GetMapping("/event")
     public List<Event> findAllEvents1(@AuthenticationPrincipal User user) {
         return eventService.getEvent ();
     }
-
-
 
 }
