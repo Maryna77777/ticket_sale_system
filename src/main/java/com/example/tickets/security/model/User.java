@@ -2,18 +2,19 @@ package com.example.tickets.security.model;
 
 import com.example.tickets.entity.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
-@ToString
+//@ToString
 @Entity
 @Table(name = "users")
-@Data
+//@Data
+@Getter
+@Setter
 public class User extends BaseEntity {
 
     @Column(name = "username")

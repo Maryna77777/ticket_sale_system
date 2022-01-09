@@ -7,6 +7,7 @@ import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
 import com.example.tickets.security.model.User;
+import com.example.tickets.security.repositorySecurity.UserRepository;
 import com.example.tickets.security.serviseSecurity.Imp.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class CustomerService {
 
 //    @Autowired
 //    public UserServiceImpl userService;
+
+    @Autowired
+    public UserRepository userRepository;
 
     public List<Customer> getCustomer() {
         return customerRepository.findAll();
@@ -40,11 +44,22 @@ public class CustomerService {
         return  customerRepository.save(customer);
     }
 
-//    public Customer saveCustomerUserId (Customer customer) {
-//        User newUser= new User();
-//        customer.setId(newUser.getId());
-//        return  customerRepository.save(customer);
-//    }
+    public Customer saveCustomerUser (Customer customer) {
+        User newUser = new User();
+        Customer newCustomer = new Customer();
+        newCustomer.setId(newUser.getId());
+        newCustomer.setFirstName (customer.getFirstName());
+        newCustomer.setLastName(customer.getLastName());
+        return  customerRepository.save(newCustomer);
+    }
+
+    public Customer saveCustomerUser1 (Long userId, Customer customer) {
+        User newUser = userRepository.findById(userId).orElse(null);
+        customer.setId(newUser.getId());
+        customer.setFirstName (newUser.getFirstName());
+        customer.setLastName(newUser.getLastName());
+        return  customerRepository.save(customer);
+    }
 
     public List<Customer> saveCustomerList(List<Customer> customers) {
         return customerRepository.saveAll(customers);

@@ -4,6 +4,7 @@ package com.example.tickets.controller;
 import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
+import com.example.tickets.entity.Sale;
 import com.example.tickets.service.CustomerService;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,16 @@ public class CustomerController {
     public Customer addCustomer (@Valid @RequestBody Customer customer) {
         return service.saveCustomer(customer);}
 
-//    @Secured("ROLE_ADMIN")
-//    @PostMapping("/addCustomer")
-//    public Customer addCustomerUser (@Valid @RequestBody Customer customer) {
-//        return service.saveCustomerUserId (customer);}
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/addCustomer")
+    public Customer addCustomerUser (@Valid @RequestBody Customer customer) {
+        return service.saveCustomerUser (customer);}
+
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/addCustomer/{userId}")
+    public Customer addCustomerByUserId (@PathVariable (value = "userId") Long userId,
+                                          @RequestBody Customer customer) {
+        return service.saveCustomerUser1 (userId, customer);}
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/list")
