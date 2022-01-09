@@ -30,10 +30,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private EventService eventService;
-    @Autowired
-    private SaleService saleService;
+
     @Autowired
     private UserServiceImpl service;
 
@@ -47,6 +44,24 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/self",method = RequestMethod.GET)
+    public UserDetails getUser(@AuthenticationPrincipal UserDetails user){
+        return user;
+    }
+
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Principal principal) {
+        return principal.getName();
+    }
+
+    @RequestMapping(value ="/current/show",method = RequestMethod.GET)
+    public JwtUser show(@CurrentUser JwtUser customUser)
+//                     (@AuthenticationPrincipal JwtUser customUser)
+    {
+        return customUser;
+    }
+
     @Secured("ROLE_MANAGER")
     @GetMapping()
     public List<User> findAllUsers() {
@@ -58,31 +73,12 @@ public class UserController {
     public User addUser (@Valid @RequestBody User user) {
         return service.register(user);}
 
-
-    @RequestMapping(value = "/self",method = RequestMethod.GET)
-    public UserDetails getUser(@AuthenticationPrincipal UserDetails user){
-        return user;
-    }
-
-
     @Secured("ROLE_ADMIN")
     @PutMapping()
     public User updateUser(@RequestBody @Valid  User user) {
         return service.updateUser(user);
     }
 
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(Principal principal) {
-       return principal.getName();
-    }
 
-    @RequestMapping("/current/show")
-    public JwtUser show
-                     (@CurrentUser JwtUser customUser)
-//                   (@AuthenticationPrincipal JwtUser customUser)
-           {
-        return customUser;
-    }
 
 }
