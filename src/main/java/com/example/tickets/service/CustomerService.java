@@ -21,9 +21,6 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-//    @Autowired
-//    public UserServiceImpl userService;
-
     @Autowired
     public UserRepository userRepository;
 
@@ -46,11 +43,10 @@ public class CustomerService {
 
     public Customer saveCustomerUser (Customer customer) {
         User newUser = new User();
-        Customer newCustomer = new Customer();
-        newCustomer.setId(newUser.getId());
-        newCustomer.setFirstName (customer.getFirstName());
-        newCustomer.setLastName(customer.getLastName());
-        return  customerRepository.save(newCustomer);
+        customer.setId(newUser.getId());
+        customer.setFirstName (customer.getFirstName());
+        customer.setLastName(customer.getLastName());
+        return  customerRepository.save(customer);
     }
 
     public Customer saveCustomerUser1 (Long userId, Customer customer) {
