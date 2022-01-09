@@ -2,7 +2,7 @@ package com.example.tickets.security.dtoSecurity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
+
 
 @Data
 public class UserDTO {

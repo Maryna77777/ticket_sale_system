@@ -36,15 +36,10 @@ public class CustomerController {
         return service.saveCustomer(customer);}
 
     @Secured("ROLE_ADMIN")
-    @PostMapping("/addCustomer")
-    public Customer addCustomerUser (@Valid @RequestBody Customer customer) {
-        return service.saveCustomerUser (customer);}
-
-    @Secured("ROLE_ADMIN")
     @PostMapping("/addCustomer/{userId}")
     public Customer addCustomerByUserId (@PathVariable (value = "userId") Long userId,
                                           @RequestBody Customer customer) {
-        return service.saveCustomerUser1 (userId, customer);}
+        return service.saveCustomerUser (userId, customer);}
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/list")

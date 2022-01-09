@@ -9,6 +9,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @AuthenticationPrincipal
-//@ComponentScan(basePackages = "com.example.tickets")
 public @interface CurrentUser{}
 

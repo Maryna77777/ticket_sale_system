@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-
-
 @Validated
 @RestController
 @RequestMapping("/sale")

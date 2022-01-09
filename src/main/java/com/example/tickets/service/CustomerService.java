@@ -41,15 +41,8 @@ public class CustomerService {
         return  customerRepository.save(customer);
     }
 
-    public Customer saveCustomerUser (Customer customer) {
-        User newUser = new User();
-        customer.setId(newUser.getId());
-        customer.setFirstName (customer.getFirstName());
-        customer.setLastName(customer.getLastName());
-        return  customerRepository.save(customer);
-    }
 
-    public Customer saveCustomerUser1 (Long userId, Customer customer) {
+    public Customer saveCustomerUser (Long userId, Customer customer) {
         User newUser = userRepository.findById(userId).orElse(null);
         customer.setId(newUser.getId());
         customer.setFirstName (newUser.getFirstName());
