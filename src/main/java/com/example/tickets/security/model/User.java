@@ -4,15 +4,17 @@ import com.example.tickets.entity.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "users")
 @Data
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Column(name = "username")
     private String username;

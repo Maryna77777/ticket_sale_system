@@ -55,7 +55,7 @@ public class Event {
     @OneToMany(mappedBy="event",cascade=CascadeType.ALL )
     private List<Sale> sales;
 
-    public void setCustomer(Customer customer) {
-    }
+//    public void setCustomer(Customer customer) {
+//    }
 
 }

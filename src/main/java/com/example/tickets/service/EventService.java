@@ -80,16 +80,16 @@ public class EventService {
         return eventMapperDTOList;
     }
 
-    public Event createEventByCustomerId(Long customerId, Event event) {
-        Optional<Customer> customer = customerRepository.findById(customerId);
-        if (customer != null) {
-            List<Event> events = customer.get().getEvents();
-            events.add(event);
-            customer.get().setEvents(events);
-            event.setCustomer(customer.get());
-        }
-        return eventRepository.save(event);
-    }
+//    public Event createEventByCustomerId(Long customerId, Event event) {
+//        Optional<Customer> customer = customerRepository.findById(customerId);
+//        if (customer != null) {
+//            List<Event> events = customer.get().getEvents();
+//            events.add(event);
+//            customer.get().setEvents(events);
+//            event.setCustomer(customer.get());
+//        }
+//        return eventRepository.save(event);
+//    }
 
     public List<EventCustomerSaleDTO> getAllEventCustomerSaleDTO() {
         EventCustomerSaleDTO  eventCustomerSaleDTO = new EventCustomerSaleDTO();

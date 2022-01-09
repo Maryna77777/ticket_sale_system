@@ -24,8 +24,6 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long user_id;
-
     @Min(value = 1, message = "should be more than 1")
     @Column(name = "NUM")
     private int number;

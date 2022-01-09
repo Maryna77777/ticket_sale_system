@@ -6,6 +6,8 @@ import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
+import com.example.tickets.security.model.User;
+import com.example.tickets.security.serviseSecurity.Imp.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+
+//    @Autowired
+//    public UserServiceImpl userService;
 
     public List<Customer> getCustomer() {
         return customerRepository.findAll();
@@ -34,6 +39,12 @@ public class CustomerService {
     public Customer saveCustomer(Customer customer) {
         return  customerRepository.save(customer);
     }
+
+//    public Customer saveCustomerUserId (Customer customer) {
+//        User newUser= new User();
+//        customer.setId(newUser.getId());
+//        return  customerRepository.save(customer);
+//    }
 
     public List<Customer> saveCustomerList(List<Customer> customers) {
         return customerRepository.saveAll(customers);

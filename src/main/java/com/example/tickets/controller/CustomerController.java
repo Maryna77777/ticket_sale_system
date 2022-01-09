@@ -34,6 +34,11 @@ public class CustomerController {
     public Customer addCustomer (@Valid @RequestBody Customer customer) {
         return service.saveCustomer(customer);}
 
+//    @Secured("ROLE_ADMIN")
+//    @PostMapping("/addCustomer")
+//    public Customer addCustomerUser (@Valid @RequestBody Customer customer) {
+//        return service.saveCustomerUserId (customer);}
+
     @Secured("ROLE_ADMIN")
     @PostMapping("/list")
     public List<Customer> addCustomers(@RequestBody @Valid List<Customer> customers) {
