@@ -35,14 +35,14 @@ public class SaleController {
 
     @Secured({"ROLE_USER"})
     @GetMapping("/user/event/{eventId}")
-    public List<Sale> getSaleByEvent (@CurrentUser JwtUser user,
-                                      @PathVariable(value = "eventId") Long eventId){
+    public List<Sale> getSaleUserByEvent (@CurrentUser JwtUser user,
+                                           @PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
 
     @Secured({"ROLE_ADMIN"})
     @PostMapping("/customer/{customerId}/{eventId}")
-    public Sale createSales2 (@PathVariable (value = "customerId") Long customerId,
+    public Sale createSales (@PathVariable (value = "customerId") Long customerId,
                               @PathVariable (value = "eventId") Long eventId,
                               @Valid @RequestBody Sale sale) {
         return service.createSaleByCustomerIdAndEventId (customerId, eventId, sale);
@@ -50,7 +50,7 @@ public class SaleController {
 
     @Secured({"ROLE_USER"})
     @PostMapping("/event/{eventId}")
-    public Sale createSales5 (@CurrentUser JwtUser user,
+    public Sale createSales (@CurrentUser JwtUser user,
                               @PathVariable (value = "eventId") Long eventId,
                               @Valid @RequestBody Sale sale) {
 
