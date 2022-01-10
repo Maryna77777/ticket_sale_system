@@ -8,8 +8,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -51,11 +49,7 @@ public class Event {
     private List<Customer> customers;
 
     @JsonIgnore
-
     @OneToMany(mappedBy="event",cascade=CascadeType.ALL )
     private List<Sale> sales;
-
-    public void setCustomer(Customer customer) {
-    }
 
 }

@@ -1,16 +1,18 @@
 package com.example.tickets.security.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "users")
 @Data
-public class User extends BaseEntity{
+
+public class User extends BaseEntity {
 
     @Column(name = "username")
     private String username;
@@ -27,6 +29,8 @@ public class User extends BaseEntity{
     @Column(name = "password")
     private String password;
 
+
+    @JsonIgnore
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

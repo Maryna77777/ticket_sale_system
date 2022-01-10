@@ -19,8 +19,8 @@ import java.util.List;
 @ToString
 @Table(name="customer")
 public class Customer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "First Name should not be empty")
@@ -36,7 +36,10 @@ public class Customer {
     @JsonIgnore
     @ManyToMany(mappedBy = "customers",cascade=CascadeType.MERGE )
     private List<Event> events;
+
     @JsonIgnore
     @OneToMany(mappedBy="customer",cascade=CascadeType.ALL )
     private List<Sale> sales;
+
+
 }

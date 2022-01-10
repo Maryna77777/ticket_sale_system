@@ -69,7 +69,6 @@ public class UserServiceImpl implements UserService {
             log.warn("IN findById - no user found by id: {}", id);
             return null;
         }
-
         log.info("IN findById - user: {} found by id: {}", result);
         return result;
     }
@@ -78,5 +77,16 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         userRepository.deleteById(id);
         log.info("IN delete - user with id: {} successfully deleted");
+    }
+
+    public User updateUser (User user) {
+        User existingUser = userRepository.findById(user.getId()).orElse(null);
+        existingUser.setFirstName (user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setUsername(user.getUsername());
+        existingUser.setEmail(user.getEmail());
+        User result =userRepository.save(existingUser);
+        log.info("IN updateUser - user: {} successfully update", result);
+        return  result;
     }
 }

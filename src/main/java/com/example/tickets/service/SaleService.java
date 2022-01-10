@@ -2,20 +2,18 @@ package com.example.tickets.service;
 
 
 import com.example.tickets.entity.Customer;
-import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
 import com.example.tickets.repository.SaleRepository;
+import com.example.tickets.security.repositorySecurity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class SaleService {
@@ -26,6 +24,7 @@ public class SaleService {
     private CustomerRepository customerRepository;
     @Autowired
     private EventRepository eventRepository;
+
 
     public List<Sale> getAllSalesByCustomerId(Long customerId) {
         return saleRepository.findByCustomerId(customerId);
@@ -47,12 +46,18 @@ public class SaleService {
     }
 
     public Sale createSaleByCustomerIdAndEventId(Long customerId, Long eventId, Sale sale) {
-    //    Optional<Customer> customer = customerRepository.findById(customerId);
-    //    Optional<Event> event = eventRepository.findById(eventId);
         sale.setCustomer(customerRepository.findById(customerId).get());
         sale.setEvent(eventRepository.findById(eventId).get());
         return saleRepository.save(sale);
     }
+
+
+    public Sale createSaleByUserIdAndEventId(Long userId, Long eventId, Sale sale) {
+        sale.setCustomer(customerRepository.findById(userId).get());
+        sale.setEvent(eventRepository.findById(eventId).get());
+        return saleRepository.save(sale);
+    }
+
 
 }
 

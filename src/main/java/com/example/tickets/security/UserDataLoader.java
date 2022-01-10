@@ -1,17 +1,14 @@
 package com.example.tickets.security;
 
-import com.example.tickets.entity.Sale;
 import com.example.tickets.security.model.Role;
 import com.example.tickets.security.model.Status;
 import com.example.tickets.security.model.User;
-import com.example.tickets.security.repositorySecurity.RoleRepository;
 import com.example.tickets.security.repositorySecurity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
