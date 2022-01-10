@@ -1,6 +1,5 @@
 package com.example.tickets.repository;
 
-//import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventCustomerSaleDTO;
 import com.example.tickets.entity.Event;
 import org.springframework.data.domain.Sort;

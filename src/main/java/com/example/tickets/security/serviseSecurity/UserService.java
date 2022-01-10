@@ -1,6 +1,5 @@
 package com.example.tickets.security.serviseSecurity;
 
-import com.example.tickets.security.dtoSecurity.UserDTO;
 import com.example.tickets.security.model.User;
 
 import java.util.List;

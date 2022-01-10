@@ -1,6 +1,5 @@
 package com.example.tickets.entity;
 
-import com.example.tickets.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -23,7 +21,6 @@ import java.util.List;
 public class Customer {
 
     @Id
- //   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "First Name should not be empty")

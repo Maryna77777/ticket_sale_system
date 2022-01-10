@@ -1,7 +1,5 @@
 package com.example.tickets.security.serviseSecurity.Imp;
 
-import com.example.tickets.entity.Customer;
-import com.example.tickets.security.dtoSecurity.UserDTO;
 import com.example.tickets.security.model.Role;
 import com.example.tickets.security.model.Status;
 import com.example.tickets.security.model.User;

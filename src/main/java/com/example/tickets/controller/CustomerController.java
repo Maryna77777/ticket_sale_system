@@ -3,14 +3,9 @@ package com.example.tickets.controller;
 
 import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
-import com.example.tickets.entity.Event;
-import com.example.tickets.entity.Sale;
 import com.example.tickets.service.CustomerService;
-import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +19,7 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
-    @Secured("ROLE_MANAGER")
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping()
     public List<Customer> findAllCustomers() {
         return service.getCustomer ();
@@ -35,8 +30,8 @@ public class CustomerController {
     public Customer addCustomer (@Valid @RequestBody Customer customer) {
         return service.saveCustomer(customer);}
 
-    @Secured("ROLE_ADMIN")
-    @PostMapping("/addCustomer/{userId}")
+    @Secured({"ROLE_ADMIN"})
+    @PostMapping("/user/{userId}")
     public Customer addCustomerByUserId (@PathVariable (value = "userId") Long userId,
                                           @RequestBody Customer customer) {
         return service.saveCustomerUser (userId, customer);}

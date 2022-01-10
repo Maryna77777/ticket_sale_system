@@ -2,19 +2,14 @@ package com.example.tickets.service;
 
 import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
-import com.example.tickets.entity.Event;
-import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
-import com.example.tickets.repository.EventRepository;
 import com.example.tickets.security.model.User;
 import com.example.tickets.security.repositorySecurity.UserRepository;
-import com.example.tickets.security.serviseSecurity.Imp.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class CustomerService {
@@ -40,7 +35,6 @@ public class CustomerService {
     public Customer saveCustomer(Customer customer) {
         return  customerRepository.save(customer);
     }
-
 
     public Customer saveCustomerUser (Long userId, Customer customer) {
         User newUser = userRepository.findById(userId).orElse(null);

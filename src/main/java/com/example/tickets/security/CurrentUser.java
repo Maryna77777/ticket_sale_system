@@ -1,6 +1,6 @@
 package com.example.tickets.security;
 
-import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.lang.annotation.*;

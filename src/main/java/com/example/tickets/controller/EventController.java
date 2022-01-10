@@ -2,12 +2,7 @@ package com.example.tickets.controller;
 
 
 import com.example.tickets.dto.EventCustomerSaleDTO;
-import com.example.tickets.dto.EventDTO;
-import com.example.tickets.dto.EventMapperDTO;
-import com.example.tickets.dto.SaleCustomerDTO;
-import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
-import com.example.tickets.entity.Sale;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -37,18 +32,18 @@ public class EventController {
     public List<Event> findAllSortedEvents() { return service.getSortedEvent();
     }
 
-    @Secured({"ROLE_MANAGER"})
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @PostMapping()
     public Event addEvent (@Valid @RequestBody Event event) {
         return service.saveEvent(event);}
 
-    @Secured({"ROLE_MANAGER"})
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @PostMapping("/list")
     public List<Event> addEvents(@RequestBody @Valid List<Event> events) {
         return service.saveEventList(events);
     }
 
-    @Secured({"ROLE_MANAGER"})
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @PutMapping()
     public Event updateEvent(@Valid @RequestBody Event event) {
         return service.updateEvent(event);
@@ -61,28 +56,21 @@ public class EventController {
     }
 
     @PermitAll
-    @DeleteMapping("/delete/{id}")
-    public Event deleteEvent1(@PathVariable Long id) {
-        return service.deleteEvent1(id);
-    }
-
-    @PermitAll
     @GetMapping("/ByTitle/{title}")
     public Event findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
     }
 
-    @Secured({"ROLE_MANAGER"})
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/eventByCustomer/{lastName}")
     public List<Event> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);
     }
 
-    @Secured({"ROLE_MANAGER"})
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/all")
     public List<EventCustomerSaleDTO> findAllEventCustomersSale() {
         return service.getAllEventCustomerSaleDTO();
     }
-
 
 }
