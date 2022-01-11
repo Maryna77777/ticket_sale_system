@@ -1,5 +1,7 @@
 package com.example.tickets.security.model;
 
+import com.example.tickets.security.validation.UniqueEmail;
+import com.example.tickets.security.validation.UniqueUserName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -22,7 +24,8 @@ import java.util.List;
 public class User extends BaseEntity {
 
         @NotEmpty(message = "Username should not be empty")
-        @Column(name = "username", unique=true)
+        @UniqueUserName
+        @Column(name = "username")
         private String username;
 
         @NotEmpty(message = "First Name should not be empty")
@@ -37,7 +40,8 @@ public class User extends BaseEntity {
 
         @NotEmpty(message = "Email should not be empty")
         @Email
-        @Column(name = "email", unique=true)
+        @UniqueEmail
+        @Column(name = "email")
         private String email;
 
         @NotEmpty(message = "Password should not be empty")
