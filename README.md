@@ -14,7 +14,7 @@ Swagger;</br>
 MySQL.</br>
 ____
 ###Getting Started
-1. You can run this project locally by clone branch review with git clone https://github.com/Maryna77777/ticket_sale_system.git;
+1. Clone the project by https://github.com/Maryna77777/ticket_sale_system.git;
 2. Connecting to MySQL database. Parameters of the database connection in the file ***application.properties***;
 3. You can use the Swagger UI by http://localhost:9191/swagger-ui/index.html.
 
