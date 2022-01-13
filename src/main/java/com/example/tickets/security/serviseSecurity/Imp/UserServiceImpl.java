@@ -89,4 +89,21 @@ public class UserServiceImpl implements UserService {
         log.info("IN updateUser - user: {} successfully update", result);
         return  result;
     }
+
+    public boolean existsByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean existsByUserName(String userName) {
+        User user = userRepository.findByUsername(userName);
+        if(user != null) {
+            return true;
+        }
+        return false;
+    }
+
 }
