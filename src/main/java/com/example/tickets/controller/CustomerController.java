@@ -1,6 +1,7 @@
 package com.example.tickets.controller;
 
 
+import com.example.tickets.dto.EventCustomerDTO;
 import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.service.CustomerService;
@@ -42,6 +43,7 @@ public class CustomerController {
         return service.saveCustomerList(customers);
     }
 
+
     @Secured("ROLE_ADMIN")
     @PutMapping()
     public Customer updateCustomer(@RequestBody @Valid  Customer customer) {
@@ -65,5 +67,9 @@ public class CustomerController {
     public List<SaleCustomerDTO> findAllCustomersSale() {
         return service.getAllCustomerSale();
     }
+
+    @Secured("ROLE_MANAGER")
+    @GetMapping("/allEvents")
+    public List<EventCustomerDTO> findAllCustomerEvent() { return service.getAllCustomerEvent();}
 
 }

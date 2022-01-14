@@ -38,7 +38,7 @@ public class EventCustomerSaleDTO {
             });
             event.getCustomers().forEach((customer) -> {
                 Customer customer1 = new Customer();
-                customer1.setId(customer1.getId());
+                customer1.setId(customer.getId());
                  customer1.setFirstName(customer.getFirstName());
                  customer1.setLastName(customer.getLastName());
                  customerList.add((customer1));

@@ -28,7 +28,7 @@ public class Sale {
     @Column(name = "NUM")
     private int number;
 
-    @Positive(message = "Cost should be positive")
+  //  @Positive(message = "Cost should be positive")
     @Column(name = "COST")
     private int cost;
 

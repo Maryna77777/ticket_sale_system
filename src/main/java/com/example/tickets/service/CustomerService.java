@@ -1,5 +1,6 @@
 package com.example.tickets.service;
 
+import com.example.tickets.dto.EventCustomerDTO;
 import com.example.tickets.dto.SaleCustomerDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.repository.CustomerRepository;
@@ -31,6 +32,14 @@ public class CustomerService {
         SaleCustomerDTO saleCustomerDTO = new SaleCustomerDTO();
         return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findAll());
     }
+
+    public List<EventCustomerDTO> getAllCustomerEvent(){
+        EventCustomerDTO eventCustomerDTO =new EventCustomerDTO();
+        return eventCustomerDTO.getEventCustomerDTOList(customerRepository.findAll());
+    }
+
+
+
 
     public Customer saveCustomer(Customer customer) {
         return  customerRepository.save(customer);

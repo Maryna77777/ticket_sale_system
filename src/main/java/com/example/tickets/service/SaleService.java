@@ -2,6 +2,7 @@ package com.example.tickets.service;
 
 
 import com.example.tickets.entity.Customer;
+import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
@@ -36,6 +37,7 @@ public class SaleService {
 
     public Sale createSaleByCustomerId(Long customerId, Sale sale) {
         Optional<Customer> customer = customerRepository.findById(customerId);
+
         if (customer != null) {
             List<Sale> sales = customer.get().getSales();
             sales.add(sale);
@@ -46,9 +48,15 @@ public class SaleService {
     }
 
     public Sale createSaleByCustomerIdAndEventId(Long customerId, Long eventId, Sale sale) {
-        sale.setCustomer(customerRepository.findById(customerId).get());
-        sale.setEvent(eventRepository.findById(eventId).get());
-        return saleRepository.save(sale);
+        Optional<Event> event =eventRepository.findById(eventId);
+        Sale sale1 = new Sale();
+        sale1.setId(sale1.getId());
+        sale1.setNumber(sale.getNumber());
+        sale1.setCost(event.get().getPrice()*sale.getNumber());
+
+        sale1.setCustomer(customerRepository.findById(customerId).get());
+        sale1.setEvent(eventRepository.findById(eventId).get());
+        return saleRepository.save(sale1);
     }
 
 
