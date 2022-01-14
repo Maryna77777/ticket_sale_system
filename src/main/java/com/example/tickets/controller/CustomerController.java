@@ -43,7 +43,6 @@ public class CustomerController {
         return service.saveCustomerList(customers);
     }
 
-
     @Secured("ROLE_ADMIN")
     @PutMapping()
     public Customer updateCustomer(@RequestBody @Valid  Customer customer) {
@@ -58,18 +57,18 @@ public class CustomerController {
 
     @Secured("ROLE_MANAGER")
     @GetMapping("/ByEvent/{title}")
-    public List<Customer> findCustomerEvent (@PathVariable  String title){
+    public List<Customer> findCustomerEventByTitle (@PathVariable  String title){
         return service.getCustomerTitle(title);
     }
 
     @Secured("ROLE_MANAGER")
     @GetMapping("/allSales")
-    public List<SaleCustomerDTO> findAllCustomersSale() {
+    public List<SaleCustomerDTO> findAllCustomersSales() {
         return service.getAllCustomerSale();
     }
 
     @Secured("ROLE_MANAGER")
-    @GetMapping("/allEvents")
-    public List<EventCustomerDTO> findAllCustomerEvent() { return service.getAllCustomerEvent();}
+    @GetMapping("/allCustomersEvents")
+    public List<EventCustomerDTO> findAllCustomersEvents() { return service.getAllCustomersEvents();}
 
 }

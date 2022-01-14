@@ -10,5 +10,5 @@ public interface CustomerMapper {
     CustomerMapper CUSTOMER_MAPPER= Mappers.getMapper(CustomerMapper.class);
     CustomerMapperDTO fromCustomer (Customer customer);
     @InheritInverseConfiguration
-    Customer toActor(CustomerMapperDTO customerMapperDTO);
+    Customer toCustomer(CustomerMapperDTO customerMapperDTO);
 }

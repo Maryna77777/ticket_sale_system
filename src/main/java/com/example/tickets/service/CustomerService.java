@@ -33,13 +33,10 @@ public class CustomerService {
         return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findAll());
     }
 
-    public List<EventCustomerDTO> getAllCustomerEvent(){
+    public List<EventCustomerDTO> getAllCustomersEvents(){
         EventCustomerDTO eventCustomerDTO =new EventCustomerDTO();
         return eventCustomerDTO.getEventCustomerDTOList(customerRepository.findAll());
     }
-
-
-
 
     public Customer saveCustomer(Customer customer) {
         return  customerRepository.save(customer);

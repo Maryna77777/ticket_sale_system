@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class SaleService {
-
     @Autowired
     private SaleRepository saleRepository;
     @Autowired
@@ -49,24 +48,21 @@ public class SaleService {
 
     public Sale createSaleByCustomerIdAndEventId(Long customerId, Long eventId, Sale sale) {
         Optional<Event> event =eventRepository.findById(eventId);
-        Sale sale1 = new Sale();
-        sale1.setId(sale1.getId());
-        sale1.setNumber(sale.getNumber());
-        sale1.setCost(event.get().getPrice()*sale.getNumber());
+        Sale newSale = new Sale();
+        newSale.setId(sale.getId());
+        newSale.setNumber(sale.getNumber());
+        newSale.setCost(event.get().getPrice()*sale.getNumber());
 
-        sale1.setCustomer(customerRepository.findById(customerId).get());
-        sale1.setEvent(eventRepository.findById(eventId).get());
-        return saleRepository.save(sale1);
+        newSale.setCustomer(customerRepository.findById(customerId).get());
+        newSale.setEvent(eventRepository.findById(eventId).get());
+        return saleRepository.save(newSale);
     }
-
 
     public Sale createSaleByUserIdAndEventId(Long userId, Long eventId, Sale sale) {
         sale.setCustomer(customerRepository.findById(userId).get());
         sale.setEvent(eventRepository.findById(eventId).get());
         return saleRepository.save(sale);
     }
-
-
 }
 
 

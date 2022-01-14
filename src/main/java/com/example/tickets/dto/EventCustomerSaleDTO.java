@@ -30,18 +30,18 @@ public class EventCustomerSaleDTO {
             eventCustomerSaleDTO.setTitle(event.getTitle());
 
             event.getSales().forEach((sale) -> {
-                Sale sale1 = new Sale();
-                sale1.setId(sale1.getId());
-                sale1.setNumber(sale.getNumber());
-                sale1.setCost(sale.getCost());
-                saleList.add(sale1);
+                Sale newSale = new Sale();
+                newSale.setId(sale.getId());
+                newSale.setNumber(sale.getNumber());
+                newSale.setCost(sale.getCost());
+                saleList.add(newSale);
             });
             event.getCustomers().forEach((customer) -> {
-                Customer customer1 = new Customer();
-                customer1.setId(customer.getId());
-                 customer1.setFirstName(customer.getFirstName());
-                 customer1.setLastName(customer.getLastName());
-                 customerList.add((customer1));
+                Customer newCustomer = new Customer();
+                newCustomer.setId(customer.getId());
+                newCustomer.setFirstName(customer.getFirstName());
+                newCustomer.setLastName(customer.getLastName());
+                 customerList.add((newCustomer));
             });
             eventCustomerSaleDTO.setSaleList(saleList);
             eventCustomerSaleDTO.setCustomerList(customerList);
@@ -49,9 +49,6 @@ public class EventCustomerSaleDTO {
         }
         return eventCustomerSaleDTOList;
     }
-
-
-
 }
 
 
