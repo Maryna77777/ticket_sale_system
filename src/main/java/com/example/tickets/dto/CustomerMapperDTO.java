@@ -11,9 +11,9 @@ import java.util.List;
 @Getter
 @Setter
 public class CustomerMapperDTO {
+    private long id;
     private String firstName;
     private String lastName;
-    private List <Event> eventList;
 }
 
 

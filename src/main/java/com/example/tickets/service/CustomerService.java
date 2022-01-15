@@ -1,8 +1,11 @@
 package com.example.tickets.service;
 
-import com.example.tickets.dto.EventCustomerDTO;
-import com.example.tickets.dto.SaleCustomerDTO;
+import com.example.tickets.MapperUtil;
+import com.example.tickets.dto.CustomerEventDTO;
+import com.example.tickets.dto.CustomerMapperDTO;
+import com.example.tickets.dto.CustomerSaleDTO;
 import com.example.tickets.entity.Customer;
+import org.modelmapper.ModelMapper;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.security.model.User;
 import com.example.tickets.security.repositorySecurity.UserRepository;
@@ -16,26 +19,38 @@ import java.util.List;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
-
     @Autowired
     public UserRepository userRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public List<Customer> getCustomer() {
-        return customerRepository.findAll();
+    private CustomerMapperDTO convertToCustomerDTO(Customer customer) {
+        CustomerMapperDTO customerMapperDTO = modelMapper.map(customer, CustomerMapperDTO.class);
+        return customerMapperDTO;}
+
+    private CustomerSaleDTO convertToCustomerSaleDTO(Customer customer) {
+        CustomerSaleDTO customerSaleDTO = modelMapper.map(customer, CustomerSaleDTO.class);
+        return customerSaleDTO ;}
+
+    private CustomerEventDTO convertToCustomerEventDTO(Customer customer) {
+        CustomerEventDTO customerEventDTO = modelMapper.map(customer, CustomerEventDTO.class);
+        return customerEventDTO ;}
+
+
+    public List<CustomerMapperDTO> getCustomer() {
+        return MapperUtil.convertList(customerRepository.findAll(), this:: convertToCustomerDTO);
     }
 
-    public List<Customer> getCustomerTitle(String title) {
-        return customerRepository.findByTitle(title);
+    public List<CustomerMapperDTO> getCustomerEventByTitle(String title) {
+        return MapperUtil.convertList(customerRepository.findByTitle(title),this:: convertToCustomerDTO);
     }
 
-    public List<SaleCustomerDTO> getAllCustomerSale() {
-        SaleCustomerDTO saleCustomerDTO = new SaleCustomerDTO();
-        return saleCustomerDTO.getSaleCustomerDTOList(customerRepository.findAll());
+    public List<CustomerSaleDTO> getAllCustomerSale() {
+        return  MapperUtil.convertList(customerRepository.findAll(), this::convertToCustomerSaleDTO);
     }
 
-    public List<EventCustomerDTO> getAllCustomersEvents(){
-        EventCustomerDTO eventCustomerDTO =new EventCustomerDTO();
-        return eventCustomerDTO.getEventCustomerDTOList(customerRepository.findAll());
+    public List<CustomerEventDTO> getAllCustomersEvents(){
+        return  MapperUtil.convertList(customerRepository.findAll(), this::convertToCustomerEventDTO);
     }
 
     public Customer saveCustomer(Customer customer) {

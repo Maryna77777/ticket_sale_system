@@ -2,6 +2,7 @@ package com.example.tickets.controller;
 
 
 import com.example.tickets.dto.EventCustomerSaleDTO;
+import com.example.tickets.dto.EventMapperDTO;
 import com.example.tickets.entity.Event;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class EventController {
 
     @PermitAll
     @GetMapping()
-    public List<Event> findAllEvents() {
+    public List<EventMapperDTO> findAllEvents() {
         return service.getEvent ();
     }
 
     @PermitAll
     @GetMapping("/sorted")
-    public List<Event> findAllSortedEvents() { return service.getSortedEvent();
+    public List<EventMapperDTO> findAllSortedEvents() { return service.getSortedEvent();
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
@@ -57,13 +58,13 @@ public class EventController {
 
     @PermitAll
     @GetMapping("/ByTitle/{title}")
-    public Event findEventByTitle(@PathVariable String title) {
+    public EventMapperDTO findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/eventByCustomer/{lastName}")
-    public List<Event> findEventCustomer (@PathVariable String lastName){
+    public List<EventMapperDTO> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);
     }
 
