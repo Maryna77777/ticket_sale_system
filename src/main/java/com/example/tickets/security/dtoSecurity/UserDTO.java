@@ -1,9 +1,10 @@
 package com.example.tickets.security.dtoSecurity;
 
-import lombok.Data;
+import lombok.*;
 
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class UserDTO {
     private String username;
