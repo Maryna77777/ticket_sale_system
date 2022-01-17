@@ -1,7 +1,9 @@
 package com.example.tickets.service;
 
 
-import com.example.tickets.dto.SaleMapperDTO;
+import com.example.tickets.MapperUtil;
+import com.example.tickets.dto.EventDTO;
+import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
 import com.example.tickets.entity.Sale;
@@ -28,17 +30,22 @@ public class SaleService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<Sale> getAllSalesByCustomerId(Long customerId) {
-        return saleRepository.findByCustomerId(customerId);
+    private SaleDTO convertToSaletDTO(Sale sale) {
+        SaleDTO saleDTO = modelMapper.map(sale, SaleDTO.class);
+        return saleDTO;
+    }
+
+    public List<SaleDTO> getAllSalesByCustomersId(Long customerId) {
+        return MapperUtil.convertList(saleRepository.findByCustomerId(customerId), this::convertToSaleDTO);
     }
 
     public List<Sale> getAllSalesByEventId(Long eventId) {
         return saleRepository.findByEventId(eventId);
     }
 
-    private SaleMapperDTO convertToSaleDTO(Sale sale) {
-        SaleMapperDTO saleMapperDTO = modelMapper.map(sale, SaleMapperDTO.class);
-        return saleMapperDTO;
+    private SaleDTO convertToSaleDTO(Sale sale) {
+        SaleDTO saleDTO = modelMapper.map(sale, SaleDTO.class);
+        return saleDTO;
     }
 
     public Sale createSaleByCustomerId(Long customerId, Sale sale) {

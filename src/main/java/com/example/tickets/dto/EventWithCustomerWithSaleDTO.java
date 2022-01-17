@@ -13,7 +13,7 @@ import java.util.List;
 @EnableTransactionManagement
 @Getter
 @Setter
-public class EventCustomerSaleDTO {
+public class EventWithCustomerWithSaleDTO {
     private long id;
     private String title;
     private List<Customer> customers;

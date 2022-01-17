@@ -1,10 +1,9 @@
 package com.example.tickets.service;
 
 import com.example.tickets.MapperUtil;
-import com.example.tickets.dto.EventCustomerSaleDTO;
-import com.example.tickets.dto.EventMapperDTO;
+import com.example.tickets.dto.EventDTO;
+import com.example.tickets.dto.EventWithCustomerWithSaleDTO;
 import com.example.tickets.entity.Event;
-import com.example.tickets.mapper.EventMapper;
 import com.example.tickets.repository.EventRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +18,25 @@ public class EventService {
     @Autowired
     private ModelMapper modelMapper;
 
-    private EventMapperDTO convertToEventDTO(Event event) {
-        EventMapperDTO eventMapperDTO = modelMapper.map(event, EventMapperDTO.class);
-        return eventMapperDTO;
+    private EventDTO convertToEventDTO(Event event) {
+        EventDTO eventDTO = modelMapper.map(event, EventDTO.class);
+        return eventDTO;
     }
 
-    private EventCustomerSaleDTO convertToEventCustomerSaleDTO(Event event){
-        EventCustomerSaleDTO eventCustomerSaleDTO = modelMapper.map(event, EventCustomerSaleDTO.class);
-        return eventCustomerSaleDTO;
+    private EventWithCustomerWithSaleDTO convertToEventWithCustomerWithSaleDTO(Event event){
+        EventWithCustomerWithSaleDTO eventWithCustomerWithSaleDTO = modelMapper.map(event, EventWithCustomerWithSaleDTO.class);
+        return eventWithCustomerWithSaleDTO;
     }
 
-    public List<EventMapperDTO> getEvent() {
+    public List<EventDTO> getEvent() {
         return MapperUtil.convertList(eventRepository.findAll(), this::convertToEventDTO);
     }
 
-    public List<EventMapperDTO> getEventLastName(String lastName){
+    public List<EventDTO> getEventLastName(String lastName){
         return MapperUtil.convertList(eventRepository.findByLastName (lastName),  this::convertToEventDTO);
     }
 
-    public List<EventMapperDTO> getSortedEvent(){
+    public List<EventDTO> getSortedEvent(){
         return MapperUtil.convertList(eventRepository.findAllOrderByData(),  this::convertToEventDTO);}
 
     public Event saveEvent(Event event) {
@@ -61,11 +60,11 @@ public class EventService {
         return  eventRepository.save(existingEvent);
     }
 
-    public EventMapperDTO getByTitle(String title) {
+    public EventDTO getByTitle(String title) {
         return convertToEventDTO(eventRepository.findByTitle(title));
     }
 
-    public List<EventCustomerSaleDTO> getAllEventCustomerSaleDTO() {
-        return  MapperUtil.convertList(eventRepository.findAll(), this::convertToEventCustomerSaleDTO);
+    public List<EventWithCustomerWithSaleDTO> getAllEventWithCustomerWithSaleDTO() {
+        return  MapperUtil.convertList(eventRepository.findAll(), this::convertToEventWithCustomerWithSaleDTO);
     }
 }

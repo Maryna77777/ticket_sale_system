@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleMapperDTO {
+public class SaleDTO {
     private long id;
     private int number;
     private int cost;

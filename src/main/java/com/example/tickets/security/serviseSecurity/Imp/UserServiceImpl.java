@@ -1,8 +1,6 @@
 package com.example.tickets.security.serviseSecurity.Imp;
 
 import com.example.tickets.MapperUtil;
-import com.example.tickets.dto.EventMapperDTO;
-import com.example.tickets.entity.Event;
 import com.example.tickets.security.dtoSecurity.UserDTO;
 import com.example.tickets.security.model.Role;
 import com.example.tickets.security.model.Status;

@@ -1,6 +1,7 @@
 package com.example.tickets.controller;
 
 
+import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.security.CurrentUser;
 import com.example.tickets.security.jwt.JwtUser;
@@ -22,9 +23,9 @@ public class SaleController {
     private SaleService service;
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
-    @GetMapping("/customer/{customerId}")
-    public List<Sale> getSaleByCustomer (@PathVariable(value = "customerId") Long customerId){
-        return service.getAllSalesByCustomerId(customerId);
+    @GetMapping("/customers/{customerId}")
+    public List<SaleDTO> getSalesByCustomer (@PathVariable(value = "customerId") Long customerId){
+        return service.getAllSalesByCustomersId(customerId);
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})

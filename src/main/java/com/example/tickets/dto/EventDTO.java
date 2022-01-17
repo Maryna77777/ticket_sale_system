@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventMapperDTO {
+public class EventDTO {
     private long id;
     private String title;
     private Date data;

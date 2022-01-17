@@ -17,7 +17,7 @@ import java.util.List;
 @EnableTransactionManagement
 @Getter
 @Setter
-public class CustomerSaleDTO  {
+public class CustomerWithSaleDTO  {
     private long id;
     private String firstName;
     private String lastName;
