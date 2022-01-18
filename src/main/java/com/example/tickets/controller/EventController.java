@@ -4,7 +4,6 @@ package com.example.tickets.controller;
 import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventWithCustomerWithSaleDTO;
 import com.example.tickets.dto.EventWithSaleDTO;
-import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Event;
 import com.example.tickets.security.CurrentUser;
 import com.example.tickets.security.jwt.JwtUser;
@@ -79,7 +78,7 @@ public class EventController {
     }
 
     @GetMapping("/sale/customer")
-    public List<EventWithSaleDTO> findEventWithSaleByCustomer (@CurrentUser JwtUser user) {
+    public List<EventWithSaleDTO> findEventWithSaleByCurrentCustomer (@CurrentUser JwtUser user) {
         return service.getEventWithSalesByCustomer(user.getId());
     }
 

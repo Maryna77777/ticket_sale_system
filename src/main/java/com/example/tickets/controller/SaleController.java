@@ -29,7 +29,7 @@ public class SaleController {
     }
 
     @GetMapping("/customer")
-    public List<SaleDTO> findSaleByCustomer (@CurrentUser JwtUser user){
+    public List<SaleDTO> findSaleByCurrentCustomer (@CurrentUser JwtUser user){
         return service.getSalesByCustomer(user.getId());
     }
 
@@ -62,6 +62,5 @@ public class SaleController {
 
         return service.createSaleByUserIdAndEventId (user.getId(), eventId, sale);
     }
-
 
 }

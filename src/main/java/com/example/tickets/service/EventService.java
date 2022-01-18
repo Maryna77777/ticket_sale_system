@@ -4,7 +4,6 @@ import com.example.tickets.MapperUtil;
 import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventWithCustomerWithSaleDTO;
 import com.example.tickets.dto.EventWithSaleDTO;
-import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Event;
 import com.example.tickets.repository.EventRepository;
 import org.modelmapper.ModelMapper;
