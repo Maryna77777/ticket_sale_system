@@ -3,7 +3,11 @@ package com.example.tickets.controller;
 
 import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventWithCustomerWithSaleDTO;
+import com.example.tickets.dto.EventWithSaleDTO;
+import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Event;
+import com.example.tickets.security.CurrentUser;
+import com.example.tickets.security.jwt.JwtUser;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;

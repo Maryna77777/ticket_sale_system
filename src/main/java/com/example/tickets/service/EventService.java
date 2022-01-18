@@ -3,6 +3,8 @@ package com.example.tickets.service;
 import com.example.tickets.MapperUtil;
 import com.example.tickets.dto.EventDTO;
 import com.example.tickets.dto.EventWithCustomerWithSaleDTO;
+import com.example.tickets.dto.EventWithSaleDTO;
+import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Event;
 import com.example.tickets.repository.EventRepository;
 import org.modelmapper.ModelMapper;
@@ -26,6 +28,11 @@ public class EventService {
     private EventWithCustomerWithSaleDTO convertToEventWithCustomerWithSaleDTO(Event event){
         EventWithCustomerWithSaleDTO eventWithCustomerWithSaleDTO = modelMapper.map(event, EventWithCustomerWithSaleDTO.class);
         return eventWithCustomerWithSaleDTO;
+    }
+
+    private EventWithSaleDTO convertToEventWithSaleDTO(Event event) {
+        EventWithSaleDTO eventWithSaleDTO = modelMapper.map(event, EventWithSaleDTO.class);
+        return eventWithSaleDTO;
     }
 
     public List<EventDTO> getEvent() {
@@ -67,4 +74,5 @@ public class EventService {
     public List<EventWithCustomerWithSaleDTO> getAllEventWithCustomerWithSaleDTO() {
         return  MapperUtil.convertList(eventRepository.findAll(), this::convertToEventWithCustomerWithSaleDTO);
     }
+
 }

@@ -1,6 +1,7 @@
 package com.example.tickets.repository;
 
 import com.example.tickets.entity.Event;
+import com.example.tickets.entity.Sale;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +23,5 @@ public interface EventRepository extends JpaRepository<Event,Long>{
 
     @Query("delete from Event e where e.id = :id")
     Event removeById (Long id);
-
-
 
 }

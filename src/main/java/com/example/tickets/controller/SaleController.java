@@ -23,9 +23,14 @@ public class SaleController {
     private SaleService service;
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
-    @GetMapping("/customers/{customerId}")
+    @GetMapping("/customer/{customerId}")
     public List<SaleDTO> getSalesByCustomer (@PathVariable(value = "customerId") Long customerId){
-        return service.getAllSalesByCustomersId(customerId);
+        return service.getAllSalesByCustomerId(customerId);
+    }
+
+    @GetMapping("/customer")
+    public List<SaleDTO> getSaleByCustomer (@CurrentUser JwtUser user){
+        return service.getSalesByCustomer(user.getId());
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
@@ -57,5 +62,6 @@ public class SaleController {
 
         return service.createSaleByUserIdAndEventId (user.getId(), eventId, sale);
     }
+
 
 }

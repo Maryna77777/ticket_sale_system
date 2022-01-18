@@ -2,7 +2,7 @@ package com.example.tickets.service;
 
 
 import com.example.tickets.MapperUtil;
-import com.example.tickets.dto.EventDTO;
+import com.example.tickets.dto.EventWithSaleDTO;
 import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Event;
@@ -10,6 +10,8 @@ import com.example.tickets.entity.Sale;
 import com.example.tickets.repository.CustomerRepository;
 import com.example.tickets.repository.EventRepository;
 import com.example.tickets.repository.SaleRepository;
+import com.example.tickets.security.CurrentUser;
+import com.example.tickets.security.jwt.JwtUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +37,8 @@ public class SaleService {
         return saleDTO;
     }
 
-    public List<SaleDTO> getAllSalesByCustomersId(Long customerId) {
+
+    public List<SaleDTO> getAllSalesByCustomerId(Long customerId) {
         return MapperUtil.convertList(saleRepository.findByCustomerId(customerId), this::convertToSaleDTO);
     }
 
@@ -74,6 +77,10 @@ public class SaleService {
         sale.setCustomer(customerRepository.findById(userId).get());
         sale.setEvent(eventRepository.findById(eventId).get());
         return saleRepository.save(sale);
+    }
+
+    public List<SaleDTO> getSalesByCustomer(Long customerId) {
+        return MapperUtil.convertList(saleRepository.findByCustomerId(customerId), this::convertToSaleDTO);
     }
 
 }
