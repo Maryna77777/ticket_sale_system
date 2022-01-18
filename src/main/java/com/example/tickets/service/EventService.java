@@ -75,4 +75,8 @@ public class EventService {
         return  MapperUtil.convertList(eventRepository.findAll(), this::convertToEventWithCustomerWithSaleDTO);
     }
 
+    public List<EventWithSaleDTO> getEventWithSalesByCustomer(Long id) {
+        return MapperUtil.convertList(eventRepository.findByCustomerId(id), this::convertToEventWithSaleDTO);
+    }
+
 }

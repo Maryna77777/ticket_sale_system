@@ -78,4 +78,9 @@ public class EventController {
         return service.getAllEventWithCustomerWithSaleDTO();
     }
 
+    @GetMapping("/sale/customer")
+    public List<EventWithSaleDTO> findEventWithSaleByCustomer (@CurrentUser JwtUser user) {
+        return service.getEventWithSalesByCustomer(user.getId());
+    }
+
 }

@@ -24,24 +24,24 @@ public class SaleController {
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/customer/{customerId}")
-    public List<SaleDTO> getSalesByCustomer (@PathVariable(value = "customerId") Long customerId){
+    public List<SaleDTO> findSalesByCustomer (@PathVariable(value = "customerId") Long customerId){
         return service.getAllSalesByCustomerId(customerId);
     }
 
     @GetMapping("/customer")
-    public List<SaleDTO> getSaleByCustomer (@CurrentUser JwtUser user){
+    public List<SaleDTO> findSaleByCustomer (@CurrentUser JwtUser user){
         return service.getSalesByCustomer(user.getId());
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/event/{eventId}")
-    public List<Sale> getSaleByEvent (@PathVariable(value = "eventId") Long eventId){
+    public List<Sale> findSaleByEvent (@PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
 
     @Secured({"ROLE_USER"})
     @GetMapping("/user/event/{eventId}")
-    public List<Sale> getSaleUserByEvent (@CurrentUser JwtUser user,
+    public List<Sale> findSaleUserByEvent (@CurrentUser JwtUser user,
                                            @PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
