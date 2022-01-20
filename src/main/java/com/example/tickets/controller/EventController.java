@@ -1,8 +1,12 @@
 package com.example.tickets.controller;
 
 
-import com.example.tickets.dto.EventCustomerSaleDTO;
+import com.example.tickets.dto.EventDTO;
+import com.example.tickets.dto.EventWithCustomerWithSaleDTO;
+import com.example.tickets.dto.EventWithSaleDTO;
 import com.example.tickets.entity.Event;
+import com.example.tickets.security.CurrentUser;
+import com.example.tickets.security.jwt.JwtUser;
 import com.example.tickets.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -23,13 +27,13 @@ public class EventController {
 
     @PermitAll
     @GetMapping()
-    public List<Event> findAllEvents() {
+    public List<EventDTO> findAllEvents() {
         return service.getEvent ();
     }
 
     @PermitAll
     @GetMapping("/sorted")
-    public List<Event> findAllSortedEvents() { return service.getSortedEvent();
+    public List<EventDTO> findAllSortedEvents() { return service.getSortedEvent();
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
@@ -57,20 +61,25 @@ public class EventController {
 
     @PermitAll
     @GetMapping("/ByTitle/{title}")
-    public Event findEventByTitle(@PathVariable String title) {
+    public EventDTO findEventByTitle(@PathVariable String title) {
         return service.getByTitle(title);
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/eventByCustomer/{lastName}")
-    public List<Event> findEventCustomer (@PathVariable String lastName){
+    public List<EventDTO> findEventCustomer (@PathVariable String lastName){
         return service.getEventLastName(lastName);
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/all")
-    public List<EventCustomerSaleDTO> findAllEventCustomersSale() {
-        return service.getAllEventCustomerSaleDTO();
+    public List<EventWithCustomerWithSaleDTO> findAllEventCustomersSale() {
+        return service.getAllEventWithCustomerWithSaleDTO();
+    }
+
+    @GetMapping("/sale/customer")
+    public List<EventWithSaleDTO> findEventWithSaleByCurrentCustomer (@CurrentUser JwtUser user) {
+        return service.getEventWithSalesByCustomer(user.getId());
     }
 
 }

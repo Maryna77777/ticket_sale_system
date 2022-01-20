@@ -10,7 +10,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Positive;
 
 
 @Entity
@@ -28,7 +27,6 @@ public class Sale {
     @Column(name = "NUM")
     private int number;
 
-    @Positive(message = "Cost should be positive")
     @Column(name = "COST")
     private int cost;
 
@@ -42,6 +40,5 @@ public class Sale {
     @JoinColumn(name = "customer_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
-
 
 }

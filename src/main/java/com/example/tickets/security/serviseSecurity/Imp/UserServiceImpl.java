@@ -1,5 +1,7 @@
 package com.example.tickets.security.serviseSecurity.Imp;
 
+import com.example.tickets.MapperUtil;
+import com.example.tickets.security.dtoSecurity.UserDTO;
 import com.example.tickets.security.model.Role;
 import com.example.tickets.security.model.Status;
 import com.example.tickets.security.model.User;
@@ -7,6 +9,7 @@ import com.example.tickets.security.repositorySecurity.RoleRepository;
 import com.example.tickets.security.repositorySecurity.UserRepository;
 import com.example.tickets.security.serviseSecurity.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,14 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+    private UserDTO convertToUserDTO(User user) {
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        return userDTO;
+    }
+
     @Override
     public User register(User user) {
         Role roleUser = roleRepository.findByName("ROLE_USER");
@@ -48,8 +59,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        List<User> result = userRepository.findAll();
+    public List<UserDTO> getAll() {
+        List<UserDTO> result = MapperUtil.convertList(userRepository.findAll(), this::convertToUserDTO);
         log.info("IN getAll - {} users found", result.size());
         return result;
     }

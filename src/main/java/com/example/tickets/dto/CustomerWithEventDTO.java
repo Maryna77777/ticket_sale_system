@@ -7,14 +7,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.List;
 
-
+@EnableTransactionManagement
 @Getter
 @Setter
-public class CustomerMapperDTO {
+public class CustomerWithEventDTO {
+    private long id;
     private String firstName;
     private String lastName;
-    private List <Event> eventList;
+    private List<Event> events;
 }
-
-
-

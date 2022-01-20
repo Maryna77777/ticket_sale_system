@@ -1,6 +1,7 @@
 package com.example.tickets.controller;
 
 
+import com.example.tickets.dto.SaleDTO;
 import com.example.tickets.entity.Sale;
 import com.example.tickets.security.CurrentUser;
 import com.example.tickets.security.jwt.JwtUser;
@@ -23,19 +24,24 @@ public class SaleController {
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/customer/{customerId}")
-    public List<Sale> getSaleByCustomer (@PathVariable(value = "customerId") Long customerId){
+    public List<SaleDTO> findSalesByCustomer (@PathVariable(value = "customerId") Long customerId){
         return service.getAllSalesByCustomerId(customerId);
+    }
+
+    @GetMapping("/customer")
+    public List<SaleDTO> findSaleByCurrentCustomer (@CurrentUser JwtUser user){
+        return service.getSalesByCustomer(user.getId());
     }
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping("/event/{eventId}")
-    public List<Sale> getSaleByEvent (@PathVariable(value = "eventId") Long eventId){
+    public List<Sale> findSaleByEvent (@PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }
 
     @Secured({"ROLE_USER"})
     @GetMapping("/user/event/{eventId}")
-    public List<Sale> getSaleUserByEvent (@CurrentUser JwtUser user,
+    public List<Sale> findSaleUserByEvent (@CurrentUser JwtUser user,
                                            @PathVariable(value = "eventId") Long eventId){
         return service.getAllSalesByEventId(eventId);
     }

@@ -13,5 +13,4 @@ public interface CustomerRepository  extends JpaRepository<Customer,Long> {
 
     @Query("select c from Customer c join c.events e where e.title = :title")
     List<Customer> findByTitle(@Param("title") String title);
-
 }

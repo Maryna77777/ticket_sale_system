@@ -1,7 +1,9 @@
 package com.example.tickets.controller;
 
 
-import com.example.tickets.dto.SaleCustomerDTO;
+import com.example.tickets.dto.CustomerDTO;
+import com.example.tickets.dto.CustomerWithEventDTO;
+import com.example.tickets.dto.CustomerWithSaleDTO;
 import com.example.tickets.entity.Customer;
 import com.example.tickets.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class CustomerController {
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping()
-    public List<Customer> findAllCustomers() {
+    public List<CustomerDTO> findAllCustomers() {
         return service.getCustomer ();
     }
 
@@ -56,14 +58,18 @@ public class CustomerController {
 
     @Secured("ROLE_MANAGER")
     @GetMapping("/ByEvent/{title}")
-    public List<Customer> findCustomerEvent (@PathVariable  String title){
-        return service.getCustomerTitle(title);
+    public List<CustomerDTO> findCustomerEventByTitle (@PathVariable  String title){
+        return service.getCustomerEventByTitle(title);
     }
 
     @Secured("ROLE_MANAGER")
     @GetMapping("/allSales")
-    public List<SaleCustomerDTO> findAllCustomersSale() {
-        return service.getAllCustomerSale();
+    public List<CustomerWithSaleDTO> findAllCustomersSales() {
+        return service.getAllCustomerWithSale();
     }
+
+    @Secured("ROLE_MANAGER")
+    @GetMapping("/allCustomersEvents")
+    public List<CustomerWithEventDTO> findAllCustomersEvents() { return service.getAllCustomersWithEvents();}
 
 }

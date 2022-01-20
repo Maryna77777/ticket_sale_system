@@ -3,6 +3,7 @@ package com.example.tickets.security.controllerSecurity;
 
 
 import com.example.tickets.security.CurrentUser;
+import com.example.tickets.security.dtoSecurity.UserDTO;
 import com.example.tickets.security.jwt.JwtUser;
 import com.example.tickets.security.model.User;
 import com.example.tickets.security.serviseSecurity.Imp.UserServiceImpl;
@@ -51,7 +52,7 @@ public class UserController {
 
     @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
     @GetMapping()
-    public List<User> findAllUsers() {
+    public List<UserDTO> findAllUsers() {
         return service.getAll();
     }
 

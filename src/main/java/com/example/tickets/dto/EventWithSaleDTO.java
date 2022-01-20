@@ -1,19 +1,19 @@
 package com.example.tickets.dto;
 
-import com.example.tickets.entity.Customer;
 import com.example.tickets.entity.Sale;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import java.util.List;
+
 @Getter
 @Setter
-public class EventMapperDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class EventWithSaleDTO {
     private long id;
     private String title;
-    private List<Customer> customerList;
-    private List<Sale> saleList;
-    }
-
-
+    private List<Sale> sales;
+}
